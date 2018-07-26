@@ -36,9 +36,9 @@ body
 	function LoadImage()
 	{
 		var image = images[imgId];
-		document.getElementById("picture").src = "images/jpeg/" + image.imgName + ".jpg"
+		document.getElementById("picture").src = "https://googledrive.com/host/1xeC4yCHsvznRMxPiznE6kx6osgOgJGtf/" + image.imgName + ".jpg"
 		document.getElementById("downloadCR2").href = "images/CR2/" + image.imgName + ".CR2"
-		document.getElementById("downloadJpg").href = "images/jpeg/" + image.imgName + ".jpg"
+		document.getElementById("downloadJpg").href = "https://googledrive.com/host/1xeC4yCHsvznRMxPiznE6kx6osgOgJGtf/" + image.imgName + ".jpg"
 		document.getElementById("downloadEditedJpg").href = "images/edited jpeg/" + image.imgName + ".jpg"
 	}
 	
@@ -68,7 +68,7 @@ body
 <span id="currentPicture">
 	<img id="picture" src=""></img>
 	<br/>
-	<a id="downloadCR2" href="" download class="btn btn-primary">Download CR2</a>
+	<a id="downloadCR2" href="" download class="btn btn-primary disabled">Download CR2</a>
 	<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
 	<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
 </span>
