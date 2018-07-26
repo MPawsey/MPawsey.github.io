@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<script src="https://apis.google.com/js/api.js"></script>
+</head>
+
+<body>
+
+<script>
+
+var apiKey = "AIzaSyBhkfJ4AJ5h_iAaCXCIKbLcUaRgPaanqE8";
+var appId = "230776066951";
+
+</script>
+
+<script>
+  /**
+   * Sample JavaScript code for drive.files.list
+   * See instructions for running APIs Explorer code samples locally:
+   * https://developers.google.com/explorer-help/guides/code_samples#javascript
+   */
+
+  function loadClient() {
+    gapi.client.setApiKey(apiKey);
+    return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/drive/v2/rest")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+  // Make sure the client is loaded before calling this method.
+  function execute() {
+    return gapi.client.drive.files.list({})
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+  gapi.load("client");
+</script>
+<button onclick="loadClient()">load</button>
+<button onclick="execute()">execute</button>
+
+<img id="image" src="" ></img>
+
+</body>
+
+</html>
