@@ -19,7 +19,6 @@ body
 <script>
 	function Picture(imageInfo)
 	{
-		console.log(imageInfo);
 		data = imageInfo.split(',');
 		this.imgName = data[0];
 		this.imgDate = data[1];
@@ -39,7 +38,6 @@ body
 	
 	for (var line in info)
 	{
-		alert(line);
 		images.push(new Picture(info[line]));
 	}
 	
@@ -53,7 +51,7 @@ body
 
 <span id="currentPicture">
 	<img src=""></img>
-	<br/>IMAGES4
+	<br/>IMAGES5
 	<a href="" download class="btn btn-primary">Download CR2</a>
 	<a href="" download class="btn btn-danger">Download Jpeg</a>
 	<a href="" download class="btn btn-success disabled">Download edited</a>
