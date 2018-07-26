@@ -17,30 +17,15 @@ body
 </style>
 
 <script>
-	function Picture(info)
+	function Picture(imageInfo)
 	{
-		data = info.split(',');
+		console.log(imageInfo);
+		data = imageInfo.split(',');
 		this.imgName = data[0];
 		this.imgDate = data[1];
 		this.imgTime = data[2];
-		
-		if (data[3].includes("|"))
-		{
-			this.tags = data[3].split('|');
-		}
-		else
-		{
-			this.tags = data[3];
-		}
-		
-		if (data[4].includes("|"))
-		{
-			this.lists = data[4].split('|');
-		}
-		else
-		{
-			this.lists = data[4];
-		}
+		this.tags = data[3].split('|');
+		this.lists = data[4].split('|');
 	}
 	
 	
@@ -54,7 +39,8 @@ body
 	
 	for (var line in info)
 	{
-		images.push(Picture(info[line]));
+		alert(line);
+		images.push(new Picture(info[line]));
 	}
 	
 	
@@ -67,7 +53,7 @@ body
 
 <span id="currentPicture">
 	<img src=""></img>
-	<br/>IMAGES3
+	<br/>IMAGES4
 	<a href="" download class="btn btn-primary">Download CR2</a>
 	<a href="" download class="btn btn-danger">Download Jpeg</a>
 	<a href="" download class="btn btn-success disabled">Download edited</a>
