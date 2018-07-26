@@ -17,10 +17,30 @@ body
 </style>
 
 <script>
+	function Picture(info)
+	{
+		data = info.split(',');
+		this.imgName = data[0];
+		this.imgDate = data[1];
+		this.imgTime = data[2];
+		this.tags = data[3].split('|');
+		this.lists = data[4].split('|');
+	}
+	
+	
+	
 	var rawFile = new XMLHttpRequest();
 	rawFile.open("GET", "info.txt", false);
 	rawFile.send();
-	var info = rawFile.responseText;
+	var info = rawFile.responseText.split('\n');
+	
+	var images = [];
+	
+	for (var line in info)
+	{
+		images.push(info[line]);
+	}
+	
 	
 </script>
 
@@ -31,7 +51,7 @@ body
 
 <span id="currentPicture">
 	<img src=""></img>
-	<br/>
+	<br/>IMAGES
 	<a href="" download class="btn btn-primary">Download CR2</a>
 	<a href="" download class="btn btn-danger">Download Jpeg</a>
 	<a href="" download class="btn btn-success disabled">Download edited</a>
