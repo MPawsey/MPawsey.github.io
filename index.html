@@ -17,6 +17,7 @@ body
 </style>
 
 <script>
+	// Picture Class
 	function Picture(imageInfo)
 	{
 		data = imageInfo.split(',');
@@ -25,22 +26,37 @@ body
 		this.imgTime = data[2];
 		this.tags = data[3].split('|');
 		this.lists = data[4].split('|');
+		this.hasEdited = (data[5] == "true")
+	}
+	
+	var imgID = 0;
+	var images = [];
+	
+	// Loads image
+	function LoadImage()
+	{
+		var image = images[imgId];
+		document.getElementById("picture").src = "images/jpeg/" + image.imgName + ".jpg"
+		document.getElementById("downloadCR2").href = "images/CR2/" + image.imgName + ".CR2"
+		document.getElementById("downloadJpg").href = "images/jpeg/" + image.imgName + ".jpg"
+		document.getElementById("downloadEditedJpg").href = "images/edited jpeg/" + image.imgName + ".jpg"
 	}
 	
 	
 	
+	
+	// On window load
 	var rawFile = new XMLHttpRequest();
 	rawFile.open("GET", "info.txt", false);
 	rawFile.send();
 	var info = rawFile.responseText.split('\n');
-	
-	var images = [];
 	
 	for (var line in info)
 	{
 		images.push(new Picture(info[line]));
 	}
 	
+	loadImage();
 	
 </script>
 
@@ -50,11 +66,11 @@ body
 <body>
 
 <span id="currentPicture">
-	<img src=""></img>
-	<br/>IMAGES5
-	<a href="" download class="btn btn-primary">Download CR2</a>
-	<a href="" download class="btn btn-danger">Download Jpeg</a>
-	<a href="" download class="btn btn-success disabled">Download edited</a>
+	<img id="picture" src=""></img>
+	<br/>
+	<a id="downloadCR2" href="" download class="btn btn-primary">Download CR2</a>
+	<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
+	<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
 </span>
 </body>
 </html>
