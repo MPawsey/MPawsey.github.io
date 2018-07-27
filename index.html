@@ -140,7 +140,6 @@ body
 					if (images[i].tags.indexOf(searchTags[t]) == -1)
 					{
 						taggedImages.splice(i, 1);
-						console.log("Image " + taggedImages[i].imgName + " does not contain " + searchTags[t]);
 						break;
 					}
 				}
@@ -157,7 +156,6 @@ body
 					if (taggedImages[i].tags.indexOf(removedTags[t]) != -1)
 					{
 						taggedImages.splice(i, 1);
-						console.log("Image " + taggedImages[i].imgName + " contains " + removedTags[t]);
 						break;
 					}
 				}
