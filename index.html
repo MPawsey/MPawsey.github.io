@@ -126,21 +126,17 @@ body
 	
 	function updateTags()
 	{
-		taggedImages = [];
+		taggedImages = images;
 		
-		if (searchTags.length == 0)
-		{
-			taggedImages = images;
-		}
-		else
+		if (searchTags.length != 0)
 		{
 			for (var i in images)
 			{
 				for (var t in searchTags)
 				{
-					if (images[i].tags.indexOf(searchTags[t]) !== -1)
+					if (images[i].tags.indexOf(searchTags[t]) == -1)
 					{
-						taggedImages.push(images[i]);
+						taggedImages.splice(i, 1);
 						break;
 					}
 				}
@@ -153,7 +149,7 @@ body
 			{
 				for (var t in removedTags)
 				{
-					if (taggedImages[i].tags.indexOf(removedTags[t]) !== -1)
+					if (taggedImages[i].tags.indexOf(removedTags[t]) != -1)
 					{
 						taggedImages.splice(i, 1);
 						break;
@@ -204,7 +200,7 @@ body
 
 
 <span class="largeImage" style="position: fixed; width: 90%; height: 85%; top: 0%; left: 5%; background-color: rgba(0, 0, 0, 0.5); text-align: center;" onclick="hideLargeImage()" >
-	<img id="picture" style="height: 100%;" src=""></img>
+	<img id="picture" style="display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; margin: 0 auto;" class="vertical-align" src=""></img>
 </span>
 
 <div class="largeImage" id="prevImage" style="position: fixed; width: 5%; height: 100%; left: 0; top: 0; background-color: rgba(0, 0, 0, 0.8); display: block; cursor: pointer;" onclick="prevImage()" >
@@ -215,7 +211,7 @@ body
 	<img src="ArrowRight.png" style="position:absolute; width: 50%; pointer-events: none; left: 25%;" class="VerticalAlgin"></image>
 </div>
 
-<div class="largeImage" id="bottomPanel" style="position: fixed; width: 90%; height: 15%; left: 5%; bottom: 0; background-color: rgba(0, 0, 0, 0.6); padding: 15px; display: block;">
+<div class="largeImage" id="bottomPanel" style="position: fixed; width: 90%; height: 15%; left: 5%; bottom: 0; background-color: rgba(0, 0, 0, 0.6); padding: 15px; display: block; min-height: 125px;;">
 	<p id="pictureName" style="text-align: center; width: 100%; font-size: 24px;"></p>
 	<div style="margin: 0 auto; display: block; width: 100%; text-align: center;">
 		<a id="downloadCR2" class="btn btn-success disabled" href="">Download RAW Image</a>
