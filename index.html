@@ -17,23 +17,6 @@ body
 
 </style>
 
-
-
-</head>
-
-
-<body>
-
-<span id="currentPicture">
-	<img id="picture" src=""></img>
-	<br/>test4.2
-	<a id="downloadCR2" href="" download class="btn btn-primary disabled">Download CR2</a>
-	<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
-	<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
-</span>
-
-
-
 <script>
 	// Picture Class
 	function Picture(imageInfo)
@@ -55,13 +38,34 @@ body
 	function LoadImage()
 	{
 		var image = images[imgID];
+		document.getElementById("pictureName").innerHTML = image.imgName;
 		document.getElementById("picture").src = "https://docs.google.com/uc?id=" + image.imgId;
-		document.getElementById("downloadCR2").href = "https://docs.google.com/uc?id=" + image.imgId;
-		document.getElementById("downloadJpg").href = "https://docs.google.com/uc?id=" + image.imgId;
-		document.getElementById("downloadEditedJpg").href = "https://docs.google.com/uc?id=" + image.imgId;
+		document.getElementById("downloadCR2").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
+		document.getElementById("downloadJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
+		document.getElementById("downloadEditedJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 	}
 	
+	function prevImage()
+	{
+		imgID -= 1;
+		if (imgID < 0)
+		{
+			imgID = images.length - 1
+		}
+		
+		LoadImage();
+	}
 	
+	function nextImage()
+	{
+		imgID += 1;
+		if (imgID == images.length - 1)
+		{
+			imgID = 0
+		}
+		
+		LoadImage();
+	}
 	
 	
 	// On window load
@@ -77,8 +81,25 @@ body
 	
 	
 	
-	LoadImage();
-	
+	window.onload = LoadImage;
 </script>
+
+</head>
+
+
+<body>
+
+<span id="currentPicture">
+	<div id="pictureName" style="position: absolute; width: 100%; text-align: center; font-size: 24px;">NAME</div>
+	<img id="picture" src="" style="width: 50%;"></img>
+	<br/>
+	<a id="downloadCR2" href="" download class="btn btn-primary disabled">Download CR2</a>
+	<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
+	<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
+	<br/>
+	<button onclick="prevImage" class="btn btn-info">Previous Image</button>
+	<button onclick="nextImage" class="btn btn-info">Next Image</button>
+</span>
+
 </body>
 </html>
