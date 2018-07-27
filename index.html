@@ -100,14 +100,13 @@ body
 	
 	function updateThumbnails()
 	{
-		var template = "<img style='margin: 15px; width: 250px;' src='$$'></img>";
-		var h = document.getElementById('thumbnails');
+		var template = "img style='margin: 15px; width: 250px;' src='$$'/img";
 		
-		h.innerHTML = "";
+		document.getElementById('thumbnails').innerHTML = "";
 		
 		for (var i in taggedImages)
 		{
-			h.innerHTML += template.replace("$$", "https://firebasestorage.googleapis.com/v0/b/cern-trip-website.appspot.com/o/jpeg%2F" + taggedImages[i].imgName + ".jpg?alt=media")
+			document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://firebasestorage.googleapis.com/v0/b/cern-trip-website.appspot.com/o/jpeg%2F" + taggedImages[i].imgName + ".jpg?alt=media")
 		}
 	}
 	
