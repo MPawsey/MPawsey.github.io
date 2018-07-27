@@ -15,6 +15,13 @@ body
 	padding: 15px;
 }
 
+.VerticalAlgin
+{
+	position:relative; 
+	top: 50%; 
+	transform: translateY(-50%);
+}
+
 </style>
 
 <script>
@@ -39,7 +46,7 @@ body
 	{
 		var image = images[imgID];
 		document.getElementById("pictureName").innerHTML = image.imgName;
-		document.getElementById("picture").src = "https://docs.google.com/uc?id=" + image.imgId;
+		document.getElementById("picture").src = "https://firebasestorage.googleapis.com/v0/b/cern-trip-website.appspot.com/o/jpeg%2F" + image.imgName + ".jpg?alt=media";
 		document.getElementById("downloadCR2").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("downloadJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("downloadEditedJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
@@ -59,7 +66,7 @@ body
 	function nextImage()
 	{
 		imgID += 1;
-		if (imgID == images.length - 1)
+		if (imgID == images.length)
 		{
 			imgID = 0
 		}
@@ -70,7 +77,7 @@ body
 	
 	// On window load
 	var rawFile = new XMLHttpRequest();
-	rawFile.open("GET", "info.txt", false);
+	rawFile.open("GET", "info2.txt", false);
 	rawFile.send();
 	var info = rawFile.responseText.split('\n');
 	
@@ -89,26 +96,34 @@ body
 
 <body>
 
-<span id="currentPicture" style="width: 100%; height: 100%;">
-	<table style="width: 100%; height: 100%;">
-		<tr>
-			<th colspan="2" id="pictureName" style="text-align: center; font-size: 24px;"></th>
-		</tr>
-		<tr>
-			<td style="width: 50%;"><img id="picture" src="" style="width: 100%;"></img></td>
-		</tr>
-		<tr>
-			<td>
-				<a id="downloadCR2" href="" download class="btn btn-primary disabled">Download CR2</a>
-				<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
-				<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
-			</td>
-			<td>
-				<button onclick="prevImage()" class="btn btn-info">Previous Image</button>
-				<button onclick="nextImage()" class="btn btn-info">Next Image</button>
-			</td>
-		</tr>
-	</table>
+<span id="largePicture" style="position: fixed; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); visibility: hidden; z-index: 100; cursor: pointer;" onclick="this.style.visibility = 'hidden'">
+	
+	<div id="PageTurnLeft" style="left: -1px; padding: 0; margin: 0; position: fixed; width: 10%; height: 100%;" class="btn btn-default">
+		<button style="width: 100%; height: 100%; top: 0%; border: 0px;" onclick="prevImage()" class="btn btn-default" ></button>
+		<img src="ArrowLeft.png" style="position:absolute; width: 20px; pointer-events: none; left: 25%;" class="VerticalAlgin"></image>
+	</div>
+	
+	<span id="currentPicture" style="position: fixed; margin: 50px; padding: 15px; text-align: center; vertical-align: center; align: center; width: 60%; height: 80%; top: 0;">
+		<img id="picture" src="" style="width: 100%;"></img>
+	</span>
+	
+	<div id="PageTurnRight" style="right: -1px; padding: 0; margin: 0; position: fixed; width: 10%; height: 100%;" class="btn btn-default">
+		<button style="width: 100%; height: 100%; top: 0%; border: 0px;" onclick="nextImage()" class="btn btn-default" ></button>
+		<img src="ArrowRight.png" style="position:absolute; width: 20px; pointer-events: none; left: 25%;" class="VerticalAlgin"></image>
+	</div>
+	
+	<span style="position: fixed; bottom: 0; height: 10%; text-align: center;">
+		<br/>
+		<div id="pictureName" style="text-align: center; font-size: 24px;"></div>
+		<a id="downloadCR2" href="" download class="btn btn-primary disabled">Download CR2</a>
+		<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
+		<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
+	</span>
+	
+</span>
+
+<span id="pictures" style="width: 100%; height: 100%;">
+	
 	
 </span>
 
