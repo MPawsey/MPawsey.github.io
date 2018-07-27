@@ -48,17 +48,24 @@ body
 	
 	
 	// On window load
-	var rawFile = new XMLHttpRequest();
-	rawFile.open("GET", "info.txt", false);
-	rawFile.send();
-	var info = rawFile.responseText.split('\n');
-	
-	for (var line in info)
+	function onLoad()
 	{
-		images.push(new Picture(info[line]));
+		var rawFile = new XMLHttpRequest();
+		rawFile.open("GET", "info.txt", false);
+		rawFile.send();
+		var info = rawFile.responseText.split('\n');
+		
+		for (var line in info)
+		{
+			images.push(new Picture(info[line]));
+		}
+		
+		
+		
+		loadImage();
 	}
 	
-	loadImage();
+	window.onload = onLoad;
 	
 </script>
 
@@ -69,7 +76,7 @@ body
 
 <span id="currentPicture">
 	<img id="picture" src=""></img>
-	<br/>test
+	<br/>test3
 	<a id="downloadCR2" href="" download class="btn btn-primary disabled">Download CR2</a>
 	<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
 	<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
