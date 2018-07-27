@@ -38,7 +38,7 @@ body
 	
 	var imgID = 0;
 	var images = [];
-	var taggedImages = images;
+	var taggedImages = images.slice();
 	var searchTags = [];
 	var removedTags = [];
 	var imageCount = 0;
@@ -127,17 +127,18 @@ body
 	
 	function updateTags()
 	{
-		taggedImages = images;
+		taggedImages = images.slice();
 		
 		if (searchTags.length != 0)
 		{
-			for (var i in images)
+			for (var i in taggedImages)
 			{
 				for (var t in searchTags)
 				{
 					if (images[i].tags.indexOf(searchTags[t]) == -1)
 					{
 						taggedImages.splice(i, 1);
+						console.log("Image " + taggedImages[i].imgName + " does not contain " + searchTags[t]);
 						break;
 					}
 				}
