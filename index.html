@@ -117,12 +117,12 @@ body
 	{
 		var template = "<img style='margin: 15px; width: 250px;' src='$$' onclick='showLargeImage(this)' id='!!'></img>";
 		
-		for (var i = imageCount; i < imageCount + 10; i++)
+		for (var i = imageCount; i < Math.max(imageCount + 10, taggedImages.length); i++)
 		{
 			document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://drive.google.com/uc?id=" + taggedImages[i].imgId).replace("!!", i);
 		}
 		
-		imageCount += 10;
+		imageCount = Math.max(imageCount + 10, taggedImages.length);
 	}
 	
 	function updateTags()
