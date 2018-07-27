@@ -133,18 +133,20 @@ body
 		
 		if (searchTags.length != 0)
 		{
-			for (var i in taggedImages)
+			for (var i in images)
 			{
 				for (var t in searchTags)
 				{
-					if (taggedImages[i].tags.indexOf(searchTags[t]) == -1)
+					if (images[i].tags.indexOf(searchTags[t]) == -1)
 					{
-						taggedImages.splice(i, 1);
+						taggedImages.splice(taggedImages.indexOf(images[i]), 1);
 						break;
 					}
 				}
 			}
 		}
+		
+		temp = taggedImages.slice();
 		
 		console.log("Remove tags: ", removedTags);
 		if (removedTags.length != 0)
@@ -155,12 +157,14 @@ body
 				{
 					if (taggedImages[i].tags.indexOf(removedTags[t]) != -1)
 					{
-						taggedImages.splice(i, 1);
+						temp.splice(temp.indexOf(taggedImages[i]), 1);
 						break;
 					}
 				}
 			}
 		}
+		
+		taggedImages = temp.slice();
 	}
 	
 	function onTagsChange(e)
