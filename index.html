@@ -199,6 +199,12 @@ body
 
 <body>
 
+<span style="text-align: center;">
+<h1>CERN Trip Photo Website</h1><br/>
+Click on a photo to view it in full screen and download it.<br/>
+Click the check boxes to refine the search.<br/>
+Complain to Matt if anything is broken.
+</span>
 
 <span class="largeImage" style="position: fixed; width: 90%; height: 85%; top: 0%; left: 5%; background-color: rgba(0, 0, 0, 0.5); text-align: center;" onclick="hideLargeImage()" >
 	<img id="picture" style="display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; margin: 0 auto;" class="VerticalAlgin" src=""></img>
@@ -230,72 +236,72 @@ body
 					<h1>Exclusive Search Tags</h1>
 					<p>Enabling one of these will result in images only containing these tags.<br/>If multiple are checked, the images shown will contain all tags.</p>
 					<form>
-						<input type="checkbox" name="Search" value="Rich" onclick="onTagsChange(this);"> Rich<br/>
-						<input type="checkbox" name="Search" value="Amanda" onclick="onTagsChange(this);"> Amanda<br/>
-						<input type="checkbox" name="Search" value="Martin" onclick="onTagsChange(this);"> Martin<br/>
-						<input type="checkbox" name="Search" value="Jane (Teacher)" onclick="onTagsChange(this);"> Jane (Teacher)<br/>
-						<input type="checkbox" name="Search" value="Tom" onclick="onTagsChange(this);"> Tom<br/>
-						<input type="checkbox" name="Search" value="Dom" onclick="onTagsChange(this);"> Dom<br/>
-						<input type="checkbox" name="Search" value="Ollie" onclick="onTagsChange(this);"> Ollie<br/>
-						<input type="checkbox" name="Search" value="Matthew" onclick="onTagsChange(this);"> Matthew<br/>
-						<input type="checkbox" name="Search" value="Alex" onclick="onTagsChange(this);"> Alex<br/>
-						<input type="checkbox" name="Search" value="Winky" onclick="onTagsChange(this);"> Winky<br/>
-						<input type="checkbox" name="Search" value="Naomi" onclick="onTagsChange(this);"> Naomi<br/>
-						<input type="checkbox" name="Search" value="Namoe" onclick="onTagsChange(this);"> Namoe<br/>
-						<input type="checkbox" name="Search" value="Grace" onclick="onTagsChange(this);"> Grace<br/>
-						<input type="checkbox" name="Search" value="Jasmine" onclick="onTagsChange(this);"> Jasmine<br/>
-						<input type="checkbox" name="Search" value="Yasmin" onclick="onTagsChange(this);"> Yasmin<br/>
-						<input type="checkbox" name="Search" value="Leah" onclick="onTagsChange(this);"> Leah<br/>
-						<input type="checkbox" name="Search" value="Jane" onclick="onTagsChange(this);"> Jane<br/>
-						<input type="checkbox" name="Search" value="Connie" onclick="onTagsChange(this);"> Connie<br/>
-						<input type="checkbox" name="Search" value="CERN" onclick="onTagsChange(this);"> CERN<br/>
-						<input type="checkbox" name="Search" value="Mountains" onclick="onTagsChange(this);"> Mountains<br/>
-						<input type="checkbox" name="Search" value="Scenery" onclick="onTagsChange(this);"> Scenery<br/>
-						<input type="checkbox" name="Search" value="Glacier" onclick="onTagsChange(this);"> Glacier<br/>
-						<input type="checkbox" name="Search" value="Science Museum" onclick="onTagsChange(this);"> Science Museum<br/>
-						<input type="checkbox" name="Search" value="Disneyland" onclick="onTagsChange(this);"> Disneyland<br/>
-						<input type="checkbox" name="Search" value="Living Place" onclick="onTagsChange(this);"> Living Place<br/>
-						<input type="checkbox" name="Search" value="Bad Photo" onclick="onTagsChange(this);"> Bad Photo<br/>
-						<input type="checkbox" name="Search" value="Group Photo" onclick="onTagsChange(this);"> Group Photo<br/>
-						<input type="checkbox" name="Search" value="Hike" onclick="onTagsChange(this);"> Hike<br/>
-						<input type="checkbox" name="Search" value="Dogs" onclick="onTagsChange(this);"> Dogs<br/>
-						<input type="checkbox" name="Search" value="Other" onclick="onTagsChange(this);"> Other
+						<input type="checkbox" name="Search" value="Rich" onchange="onTagsChange(this);"> Rich<br/>
+						<input type="checkbox" name="Search" value="Amanda" onchange="onTagsChange(this);"> Amanda<br/>
+						<input type="checkbox" name="Search" value="Martin" onchange="onTagsChange(this);"> Martin<br/>
+						<input type="checkbox" name="Search" value="Jane (Teacher)" onchange="onTagsChange(this);"> Jane (Teacher)<br/>
+						<input type="checkbox" name="Search" value="Tom" onchange="onTagsChange(this);"> Tom<br/>
+						<input type="checkbox" name="Search" value="Dom" onchange="onTagsChange(this);"> Dom<br/>
+						<input type="checkbox" name="Search" value="Ollie" onchange="onTagsChange(this);"> Ollie<br/>
+						<input type="checkbox" name="Search" value="Matthew" onchange="onTagsChange(this);"> Matthew<br/>
+						<input type="checkbox" name="Search" value="Alex" onchange="onTagsChange(this);"> Alex<br/>
+						<input type="checkbox" name="Search" value="Winky" onchange="onTagsChange(this);"> Winky<br/>
+						<input type="checkbox" name="Search" value="Naomi" onchange="onTagsChange(this);"> Naomi<br/>
+						<input type="checkbox" name="Search" value="Namoe" onchange="onTagsChange(this);"> Namoe<br/>
+						<input type="checkbox" name="Search" value="Grace" onchange="onTagsChange(this);"> Grace<br/>
+						<input type="checkbox" name="Search" value="Jasmine" onchange="onTagsChange(this);"> Jasmine<br/>
+						<input type="checkbox" name="Search" value="Yasmin" onchange="onTagsChange(this);"> Yasmin<br/>
+						<input type="checkbox" name="Search" value="Leah" onchange="onTagsChange(this);"> Leah<br/>
+						<input type="checkbox" name="Search" value="Jane" onchange="onTagsChange(this);"> Jane<br/>
+						<input type="checkbox" name="Search" value="Connie" onchange="onTagsChange(this);"> Connie<br/>
+						<input type="checkbox" name="Search" value="CERN" onchange="onTagsChange(this);"> CERN<br/>
+						<input type="checkbox" name="Search" value="Mountains" onchange="onTagsChange(this);"> Mountains<br/>
+						<input type="checkbox" name="Search" value="Scenery" onchange="onTagsChange(this);"> Scenery<br/>
+						<input type="checkbox" name="Search" value="Glacier" onchange="onTagsChange(this);"> Glacier<br/>
+						<input type="checkbox" name="Search" value="Science Museum" onchange="onTagsChange(this);"> Science Museum<br/>
+						<input type="checkbox" name="Search" value="Disneyland" onchange="onTagsChange(this);"> Disneyland<br/>
+						<input type="checkbox" name="Search" value="Living Place" onchange="onTagsChange(this);"> Living Place<br/>
+						<input type="checkbox" name="Search" value="Bad Photo" onchange="onTagsChange(this);"> Bad Photo<br/>
+						<input type="checkbox" name="Search" value="Group Photo" onchange="onTagsChange(this);"> Group Photo<br/>
+						<input type="checkbox" name="Search" value="Hike" onchange="onTagsChange(this);"> Hike<br/>
+						<input type="checkbox" name="Search" value="Dogs" onchange="onTagsChange(this);"> Dogs<br/>
+						<input type="checkbox" name="Search" value="Other" onchange="onTagsChange(this);"> Other
 					</form>
 				</td>
 				<td style="height: 100%;">
 					<h1>Remove Tags</h1>
 					<p>Enabling one of these will result in images not containing these tags.<br/>If multiple are checked, the images shown will contain none of the selected tags.<br/>This feature overrides exclusive search.</p>
 					<form>
-						<input type="checkbox" name="Remove" value="Rich" onclick="onTagsChange(this);"> Rich<br/>
-						<input type="checkbox" name="Remove" value="Amanda" onclick="onTagsChange(this);"> Amanda<br/>
-						<input type="checkbox" name="Remove" value="Martin" onclick="onTagsChange(this);"> Martin<br/>
-						<input type="checkbox" name="Remove" value="Jane (Teacher)" onclick="onTagsChange(this);"> Jane (Teacher)<br/>
-						<input type="checkbox" name="Remove" value="Tom" onclick="onTagsChange(this);"> Tom<br/>
-						<input type="checkbox" name="Remove" value="Dom" onclick="onTagsChange(this);"> Dom<br/>
-						<input type="checkbox" name="Remove" value="Ollie" onclick="onTagsChange(this);"> Ollie<br/>
-						<input type="checkbox" name="Remove" value="Matthew" onclick="onTagsChange(this);"> Matthew<br/>
-						<input type="checkbox" name="Remove" value="Alex" onclick="onTagsChange(this);"> Alex<br/>
-						<input type="checkbox" name="Remove" value="Winky" onclick="onTagsChange(this);"> Winky<br/>
-						<input type="checkbox" name="Remove" value="Naomi" onclick="onTagsChange(this);"> Naomi<br/>
-						<input type="checkbox" name="Remove" value="Namoe" onclick="onTagsChange(this);"> Namoe<br/>
-						<input type="checkbox" name="Remove" value="Grace" onclick="onTagsChange(this);"> Grace<br/>
-						<input type="checkbox" name="Remove" value="Jasmine" onclick="onTagsChange(this);"> Jasmine<br/>
-						<input type="checkbox" name="Remove" value="Yasmin" onclick="onTagsChange(this);"> Yasmin<br/>
-						<input type="checkbox" name="Remove" value="Leah" onclick="onTagsChange(this);"> Leah<br/>
-						<input type="checkbox" name="Remove" value="Jane" onclick="onTagsChange(this);"> Jane<br/>
-						<input type="checkbox" name="Remove" value="Connie" onclick="onTagsChange(this);"> Connie<br/>
-						<input type="checkbox" name="Remove" value="CERN" onclick="onTagsChange(this);"> CERN<br/>
-						<input type="checkbox" name="Remove" value="Mountains" onclick="onTagsChange(this);"> Mountains<br/>
-						<input type="checkbox" name="Remove" value="Scenery" onclick="onTagsChange(this);"> Scenery<br/>
-						<input type="checkbox" name="Remove" value="Glacier" onclick="onTagsChange(this);"> Glacier<br/>
-						<input type="checkbox" name="Remove" value="Science Museum" onclick="onTagsChange(this);"> Science Museum<br/>
-						<input type="checkbox" name="Remove" value="Disneyland" onclick="onTagsChange(this);"> Disneyland<br/>
-						<input type="checkbox" name="Remove" value="Living Place" onclick="onTagsChange(this);"> Living Place<br/>
-						<input type="checkbox" name="Remove" value="Bad Photo" onclick="onTagsChange(this);"> Bad Photo<br/>
-						<input type="checkbox" name="Remove" value="Group Photo" onclick="onTagsChange(this);"> Group Photo<br/>
-						<input type="checkbox" name="Remove" value="Hike" onclick="onTagsChange(this);"> Hike<br/>
-						<input type="checkbox" name="Remove" value="Dogs" onclick="onTagsChange(this);"> Dogs<br/>
-						<input type="checkbox" name="Remove" value="Other" onclick="onTagsChange(this);"> Other
+						<input type="checkbox" name="Remove" value="Rich" onchange="onTagsChange(this);"> Rich<br/>
+						<input type="checkbox" name="Remove" value="Amanda" onchange="onTagsChange(this);"> Amanda<br/>
+						<input type="checkbox" name="Remove" value="Martin" onchange="onTagsChange(this);"> Martin<br/>
+						<input type="checkbox" name="Remove" value="Jane (Teacher)" onchange="onTagsChange(this);"> Jane (Teacher)<br/>
+						<input type="checkbox" name="Remove" value="Tom" onchange="onTagsChange(this);"> Tom<br/>
+						<input type="checkbox" name="Remove" value="Dom" onchange="onTagsChange(this);"> Dom<br/>
+						<input type="checkbox" name="Remove" value="Ollie" onchange="onTagsChange(this);"> Ollie<br/>
+						<input type="checkbox" name="Remove" value="Matthew" onchange="onTagsChange(this);"> Matthew<br/>
+						<input type="checkbox" name="Remove" value="Alex" onchange="onTagsChange(this);"> Alex<br/>
+						<input type="checkbox" name="Remove" value="Winky" onchange="onTagsChange(this);"> Winky<br/>
+						<input type="checkbox" name="Remove" value="Naomi" onchange="onTagsChange(this);"> Naomi<br/>
+						<input type="checkbox" name="Remove" value="Namoe" onchange="onTagsChange(this);"> Namoe<br/>
+						<input type="checkbox" name="Remove" value="Grace" onchange="onTagsChange(this);"> Grace<br/>
+						<input type="checkbox" name="Remove" value="Jasmine" onchange="onTagsChange(this);"> Jasmine<br/>
+						<input type="checkbox" name="Remove" value="Yasmin" onchange="onTagsChange(this);"> Yasmin<br/>
+						<input type="checkbox" name="Remove" value="Leah" onchange="onTagsChange(this);"> Leah<br/>
+						<input type="checkbox" name="Remove" value="Jane" onchange="onTagsChange(this);"> Jane<br/>
+						<input type="checkbox" name="Remove" value="Connie" onchange="onTagsChange(this);"> Connie<br/>
+						<input type="checkbox" name="Remove" value="CERN" onchange="onTagsChange(this);"> CERN<br/>
+						<input type="checkbox" name="Remove" value="Mountains" onchange="onTagsChange(this);"> Mountains<br/>
+						<input type="checkbox" name="Remove" value="Scenery" onchange="onTagsChange(this);"> Scenery<br/>
+						<input type="checkbox" name="Remove" value="Glacier" onchange="onTagsChange(this);"> Glacier<br/>
+						<input type="checkbox" name="Remove" value="Science Museum" onchange="onTagsChange(this);"> Science Museum<br/>
+						<input type="checkbox" name="Remove" value="Disneyland" onchange="onTagsChange(this);"> Disneyland<br/>
+						<input type="checkbox" name="Remove" value="Living Place" onchange="onTagsChange(this);"> Living Place<br/>
+						<input type="checkbox" name="Remove" value="Bad Photo" onchange="onTagsChange(this);"> Bad Photo<br/>
+						<input type="checkbox" name="Remove" value="Group Photo" onchange="onTagsChange(this);"> Group Photo<br/>
+						<input type="checkbox" name="Remove" value="Hike" onchange="onTagsChange(this);"> Hike<br/>
+						<input type="checkbox" name="Remove" value="Dogs" onchange="onTagsChange(this);"> Dogs<br/>
+						<input type="checkbox" name="Remove" value="Other" onchange="onTagsChange(this);"> Other
 					</form>
 				</td>
 			</tr>
