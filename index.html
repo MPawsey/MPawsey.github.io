@@ -17,6 +17,23 @@ body
 
 </style>
 
+
+
+</head>
+
+
+<body>
+
+<span id="currentPicture">
+	<img id="picture" src=""></img>
+	<br/>test4.1
+	<a id="downloadCR2" href="" download class="btn btn-primary disabled">Download CR2</a>
+	<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
+	<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
+</span>
+
+
+
 <script>
 	// Picture Class
 	function Picture(imageInfo)
@@ -48,38 +65,21 @@ body
 	
 	
 	// On window load
-	function onLoad()
+	var rawFile = new XMLHttpRequest();
+	rawFile.open("GET", "info.txt", false);
+	rawFile.send();
+	var info = rawFile.responseText.split('\n');
+	
+	for (var line in info)
 	{
-		var rawFile = new XMLHttpRequest();
-		rawFile.open("GET", "info.txt", false);
-		rawFile.send();
-		var info = rawFile.responseText.split('\n');
-		
-		for (var line in info)
-		{
-			images.push(new Picture(info[line]));
-		}
-		
-		
-		
-		loadImage();
+		console.log(line);
+		images.push(new Picture(info[line]));
 	}
 	
-	window.onload = onLoad;
+	
+	
+	loadImage();
 	
 </script>
-
-</head>
-
-
-<body>
-
-<span id="currentPicture">
-	<img id="picture" src=""></img>
-	<br/>test3
-	<a id="downloadCR2" href="" download class="btn btn-primary disabled">Download CR2</a>
-	<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
-	<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
-</span>
 </body>
 </html>
