@@ -41,6 +41,7 @@ body
 	var taggedImages = images;
 	var searchTags = [];
 	var removedTags = [];
+	var imageCount = 0;
 	
 	// Loads image
 	function LoadImage()
@@ -102,9 +103,8 @@ body
 	{
 		var template = "<img style='margin: 15px; width: 250px;' src='$$'></img>";
 		
-		document.getElementById('thumbnails').innerHTML = "";
 		
-		for (var i in taggedImages)
+		for (var i = imageCount; i < imageCount + 10; i++)
 		{
 			document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://drive.google.com/uc?id=" + taggedImages[i].imgId);
 		}
@@ -175,6 +175,8 @@ body
 		}
 		
 		updateTags();
+		document.getElementById('thumbnails').innerHTML = "";
+		imageCount = 0;
 		updateThumbnails();
 	}
 	
@@ -291,6 +293,10 @@ body
 	
 	<span id="thumbnails" style="padding: 15px;">
 		
+	</span>
+	
+	<span>
+		<button onclick="updateThumbnails()" style="margin: 0 auto; display: block;" class="btn btn-primary">Load More Images</button>
 	</span>
 </span>
 
