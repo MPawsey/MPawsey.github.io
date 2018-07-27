@@ -38,7 +38,7 @@ body
 	
 	var imgID = 0;
 	var images = [];
-	var taggedImages = images.slice();
+	var taggedImages = [];
 	var searchTags = [];
 	var removedTags = [];
 	var imageCount = 0;
@@ -87,7 +87,7 @@ body
 	{
 		images.push(new Picture(info[line]));
 	}
-	
+	taggedImages = images.slice();
 	
 	function hideLargeImage()
 	{
