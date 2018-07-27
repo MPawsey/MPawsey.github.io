@@ -6,13 +6,12 @@
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="https://apis.google.com/js/api.js"></script>
-
+<script src="jquery-3.3.1.min.js"></script>
 <style>
 
 body
 {
-	padding: 15px;
+	
 }
 
 .VerticalAlgin
@@ -86,9 +85,21 @@ body
 		images.push(new Picture(info[line]));
 	}
 	
-	
-	
 	window.onload = LoadImage;
+	
+	
+	
+	
+	function hideLargeImage()
+	{
+		var items = document.getElementsByClassName('largeImage')
+	
+		for (var i = 0; i < items.length; i++)
+		{
+			items[i].style.display = 'none';
+		}
+	}
+	
 </script>
 
 </head>
@@ -96,34 +107,27 @@ body
 
 <body>
 
-<span id="largePicture" style="position: fixed; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); visibility: hidden; z-index: 100; cursor: pointer;" onclick="this.style.visibility = 'hidden'">
-	
-	<div id="PageTurnLeft" style="left: -1px; padding: 0; margin: 0; position: fixed; width: 10%; height: 100%;" class="btn btn-default">
-		<button style="width: 100%; height: 100%; top: 0%; border: 0px;" onclick="prevImage()" class="btn btn-default" ></button>
-		<img src="ArrowLeft.png" style="position:absolute; width: 20px; pointer-events: none; left: 25%;" class="VerticalAlgin"></image>
-	</div>
-	
-	<span id="currentPicture" style="position: fixed; margin: 50px; padding: 15px; text-align: center; vertical-align: center; align: center; width: 60%; height: 80%; top: 0;">
-		<img id="picture" src="" style="width: 100%;"></img>
-	</span>
-	
-	<div id="PageTurnRight" style="right: -1px; padding: 0; margin: 0; position: fixed; width: 10%; height: 100%;" class="btn btn-default">
-		<button style="width: 100%; height: 100%; top: 0%; border: 0px;" onclick="nextImage()" class="btn btn-default" ></button>
-		<img src="ArrowRight.png" style="position:absolute; width: 20px; pointer-events: none; left: 25%;" class="VerticalAlgin"></image>
-	</div>
-	
-	<span style="position: fixed; bottom: 0; height: 10%; text-align: center;">
-		<br/>
-		<div id="pictureName" style="text-align: center; font-size: 24px;"></div>
-		<a id="downloadCR2" href="" download class="btn btn-primary disabled">Download CR2</a>
-		<a id="downloadJpg" href="" download class="btn btn-danger">Download Jpeg</a>
-		<a id="downloadEditedJpg" href="" download class="btn btn-success disabled">Download edited</a>
-	</span>
-	
+
+<span class="largeImage" style="position: fixed; width: 90%; height: 85%; top: 0%; left: 5%; background-color: rgba(0, 0, 0, 0.5);" onclick="hideLargeImage()" >
+	<img id="picture" style="height: 100%;" src=""></img>
 </span>
 
+<div class="largeImage" id="prevImage" style="position: fixed; width: 5%; height: 100%; left: 0; top: 0; background-color: rgba(0, 0, 0, 0.8); display: block; cursor: pointer;" >
+	<img src="ArrowLeft.png" style="position:absolute; width: 50%; pointer-events: none; left: 25%;" class="VerticalAlgin"></image>
+</div>
+
+<div class="largeImage" id="nextImage" style="position: fixed; width: 5%; height: 100%; right: 0; top: 0; background-color: rgba(0, 0, 0, 0.8); display: block; cursor: pointer;" >
+	<img src="ArrowRight.png" style="position:absolute; width: 50%; pointer-events: none; left: 25%;" class="VerticalAlgin"></image>
+</div>
+
+<div class="largeImage" id="bottomPanel" style="position: fixed; width: 90%; height: 15%; left: 5%; bottom: 0; background-color: rgba(0, 0, 0, 0.6); padding: 15px; display: block;">
+	<p id="pictureName" style="text-align: center; width: 100%; font-size: 24px;"></p>
+	<div style="margin: 0 auto; display: block; width: 100%; text-align: center;">
+		<a id="downloadJpg" class="btn btn-success" href="">Download Image</a>
+	</div>
+</div>
+
 <span id="pictures" style="width: 100%; height: 100%;">
-	
 	
 </span>
 
