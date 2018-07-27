@@ -84,10 +84,6 @@ body
 		images.push(new Picture(info[line]));
 	}
 	
-	window.onload = LoadImage;
-	
-	
-	
 	
 	function hideLargeImage()
 	{
@@ -107,7 +103,7 @@ body
 <body>
 
 
-<span class="largeImage" style="position: fixed; width: 90%; height: 85%; top: 0%; left: 5%; background-color: rgba(0, 0, 0, 0.5);" onclick="hideLargeImage()" >
+<span class="largeImage" style="position: fixed; width: 90%; height: 85%; top: 0%; left: 5%; background-color: rgba(0, 0, 0, 0.5); text-align: center;" onclick="hideLargeImage()" >
 	<img id="picture" style="height: 100%;" src=""></img>
 </span>
 
@@ -122,7 +118,9 @@ body
 <div class="largeImage" id="bottomPanel" style="position: fixed; width: 90%; height: 15%; left: 5%; bottom: 0; background-color: rgba(0, 0, 0, 0.6); padding: 15px; display: block;">
 	<p id="pictureName" style="text-align: center; width: 100%; font-size: 24px;"></p>
 	<div style="margin: 0 auto; display: block; width: 100%; text-align: center;">
+		<a id="downloadCR2" class="btn btn-success disabled" href="">Download RAW Image</a>
 		<a id="downloadJpg" class="btn btn-success" href="">Download Image</a>
+		<a id="downloadEditedJpg" class="btn btn-success disabled" href="">Download Edited Image</a>
 	</div>
 </div>
 
@@ -130,5 +128,10 @@ body
 	
 </span>
 
+
+
+<script>
+LoadImage();
+</script>
 </body>
 </html>
