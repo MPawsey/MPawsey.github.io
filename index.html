@@ -23,11 +23,12 @@ body
 	{
 		data = imageInfo.split(',');
 		this.imgName = data[0];
-		this.imgDate = data[1];
-		this.imgTime = data[2];
-		this.tags = data[3].split('|');
-		this.lists = data[4].split('|');
-		this.hasEdited = (data[5] == "true")
+		this.imgId = data[1];
+		this.imgDate = data[2];
+		this.imgTime = data[3];
+		this.tags = data[4].split('|');
+		this.lists = data[5].split('|');
+		this.hasEdited = (data[6] == "true")
 	}
 	
 	var imgID = 0;
@@ -36,11 +37,11 @@ body
 	// Loads image
 	function LoadImage()
 	{
-		var image = images[imgId];
-		document.getElementById("picture").src = "https://googledrive.com/host/1xeC4yCHsvznRMxPiznE6kx6osgOgJGtf/" + image.imgName + ".jpg";
-		document.getElementById("downloadCR2").href = "images/CR2/" + image.imgName + ".CR2";
-		document.getElementById("downloadJpg").href = "https://googledrive.com/host/1xeC4yCHsvznRMxPiznE6kx6osgOgJGtf/" + image.imgName + ".jpg";
-		document.getElementById("downloadEditedJpg").href = "images/edited jpeg/" + image.imgName + ".jpg";
+		var image = images[imgID];
+		document.getElementById("picture").src = "hhttps://docs.google.com/uc?id=" + image.imgId + ".jpg";
+		document.getElementById("downloadCR2").href = "https://docs.google.com/uc?id=" + image.imgId + ".CR2";
+		document.getElementById("downloadJpg").href = "https://docs.google.com/uc?id=" + image.imgId + ".jpg";
+		document.getElementById("downloadEditedJpg").href = "https://docs.google.com/uc?id=" + image.imgId + ".jpg";
 	}
 	
 	
