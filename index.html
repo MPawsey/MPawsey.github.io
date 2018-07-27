@@ -47,7 +47,7 @@ body
 	{
 		var image = images[imgID];
 		document.getElementById("pictureName").innerHTML = image.imgName;
-		document.getElementById("picture").src = "https://firebasestorage.googleapis.com/v0/b/cern-trip-website.appspot.com/o/jpeg%2F" + image.imgName + ".jpg?alt=media";
+		document.getElementById("picture").src = "https://drive.google.com/uc?id=" + image.imgId;
 		document.getElementById("downloadCR2").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("downloadJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("downloadEditedJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
@@ -106,7 +106,7 @@ body
 		
 		for (var i in taggedImages)
 		{
-			document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://firebasestorage.googleapis.com/v0/b/cern-trip-website.appspot.com/o/jpeg%2F" + taggedImages[i].imgName + ".jpg?alt=media")
+			document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://drive.google.com/uc?id=" + taggedImages[i].imgId;)
 		}
 	}
 	
