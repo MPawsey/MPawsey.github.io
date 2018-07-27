@@ -107,7 +107,7 @@ body
 		
 		for (var i in taggedImages)
 		{
-			h.innerHTML += template.replace("$$", "https://firebasestorage.googleapis.com/v0/b/cern-trip-website.appspot.com/o/jpeg%2F" + image.imgName + ".jpg?alt=media")
+			h.innerHTML += template.replace("$$", "https://firebasestorage.googleapis.com/v0/b/cern-trip-website.appspot.com/o/jpeg%2F" + taggedImages[i].imgName + ".jpg?alt=media")
 		}
 	}
 	
