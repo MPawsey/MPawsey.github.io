@@ -87,6 +87,7 @@ body
 	{
 		images.push(new Picture(info[line]));
 	}
+	
 	taggedImages = images.slice();
 	
 	function hideLargeImage()
@@ -129,6 +130,8 @@ body
 	{
 		taggedImages = images.slice();
 		
+		console.log("Search tags: ", searchTags);
+		
 		if (searchTags.length != 0)
 		{
 			for (var i in taggedImages)
@@ -145,6 +148,7 @@ body
 			}
 		}
 		
+		console.log("Remove tags: ", removeTags);
 		if (removedTags.length != 0)
 		{
 			for (var i in taggedImages)
@@ -154,6 +158,7 @@ body
 					if (taggedImages[i].tags.indexOf(removedTags[t]) != -1)
 					{
 						taggedImages.splice(i, 1);
+						console.log("Image " + taggedImages[i].imgName + " contains " + removedTags[t]);
 						break;
 					}
 				}
@@ -163,6 +168,7 @@ body
 	
 	function onTagsChange(e)
 	{
+		console.log("Tag changed: " + e.value);
 		if (e.name == "Search")
 		{
 			if (e.checked)
@@ -201,10 +207,11 @@ body
 <body>
 
 <span style="text-align: center; width: 100%;">
-<h1>CERN Trip Photo Website</h1><br/>
-Click on a photo to view it in full screen and download it.<br/>
-Click the check boxes to refine the search.<br/>
-Complain to Matt if anything is broken.
+	<h1>CERN Trip Photo Website</h1><br/>
+	Click on a photo to view it in full screen and download it.<br/>
+	Click the check boxes to refine the search.<br/>
+	Complain to Matt if anything is broken.<br/>
+	Current status: BROKEN 
 </span>
 
 <span class="largeImage" style="position: fixed; width: 90%; height: 85%; top: 0%; left: 5%; background-color: rgba(0, 0, 0, 0.5); text-align: center;" onclick="hideLargeImage()" >
