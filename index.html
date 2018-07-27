@@ -46,7 +46,7 @@ body
 	// Loads image
 	function LoadImage()
 	{
-		var image = images[imgID];
+		var image = taggedImages[imgID];
 		document.getElementById("pictureName").innerHTML = image.imgName;
 		document.getElementById("picture").src = "https://drive.google.com/uc?id=" + image.imgId;
 		document.getElementById("downloadCR2").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
@@ -59,7 +59,7 @@ body
 		imgID -= 1;
 		if (imgID < 0)
 		{
-			imgID = images.length - 1
+			imgID = taggedImages.length - 1
 		}
 		
 		LoadImage();
@@ -68,7 +68,7 @@ body
 	function nextImage()
 	{
 		imgID += 1;
-		if (imgID == images.length)
+		if (imgID == taggedImages.length)
 		{
 			imgID = 0
 		}
@@ -99,14 +99,28 @@ body
 		}
 	}
 	
+	function showLargeImage(e)
+	{
+		imgID = parseInt(e.attributes.id.value);
+		
+		var items = document.getElementsByClassName('largeImage');
+	
+		for (var i = 0; i < items.length; i++)
+		{
+			items[i].style.display = 'initial';
+		}
+		
+		LoadImage();
+	}
+	
 	function updateThumbnails()
 	{
-		var template = "<img style='margin: 15px; width: 250px;' src='$$'></img>";
+		var template = "<img style='margin: 15px; width: 250px;' src='$$' onclick='showLargeImage(this)' id='!!'></img>";
 		
 		
 		for (var i = imageCount; i < imageCount + 10; i++)
 		{
-			document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://drive.google.com/uc?id=" + taggedImages[i].imgId);
+			document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://drive.google.com/uc?id=" + taggedImages[i].imgId).replace("!!", i);
 		}
 	}
 	
@@ -176,6 +190,7 @@ body
 		
 		updateTags();
 		document.getElementById('thumbnails').innerHTML = "";
+		imgID = 0;
 		imageCount = 0;
 		updateThumbnails();
 	}
@@ -291,7 +306,7 @@ body
 	</div>
 	
 	
-	<span id="thumbnails" style="padding: 15px;">
+	<span id="thumbnails" style="padding: 15px; text-align: center;">
 		
 	</span>
 	
