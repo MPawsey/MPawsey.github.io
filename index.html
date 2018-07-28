@@ -33,7 +33,9 @@ body
 		this.imgTime = data[3];
 		this.tags = data[4].split('|');
 		this.lists = data[5].split('|');
-		this.hasEdited = (data[6] == "true")
+		this.hasEdited = (data[6] == "true");
+		this.extensions = data[7].split('|');
+		this.owner = data[8];
 	}
 	
 	var imgID = 0;
@@ -42,12 +44,13 @@ body
 	var searchTags = [];
 	var removedTags = [];
 	var imageCount = 0;
+	var selectedOwner = "";
 	
 	// Loads image
 	function LoadImage()
 	{
 		var image = taggedImages[imgID];
-		document.getElementById("pictureName").innerHTML = image.imgName;
+		document.getElementById("pictureName").innerHTML = image.imgName + "<br>Time Taken: " + image.imgDate + " " + image.imgTime + "<br>Taken by " + image.owner;
 		document.getElementById("picture").src = "https://drive.google.com/uc?id=" + image.imgId;
 		document.getElementById("downloadCR2").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("downloadJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
@@ -130,7 +133,6 @@ body
 		taggedImages = images.slice();
 		
 		console.log("Search tags: ", searchTags);
-		
 		if (searchTags.length != 0)
 		{
 			for (var i in images)
@@ -165,6 +167,19 @@ body
 		}
 		
 		taggedImages = temp.slice();
+		console.log("Owner: ", selectedOwner);
+		
+		if (selectedOwner != "")
+		{
+			for (var i in taggedImages)
+			{
+				if (taggedImages[i].owner != selectedOwner)
+				{
+					temp.splice(temp.indexOf(taggedImages[i]), 1);
+				}
+			}
+		}
+		
 	}
 	
 	function onTagsChange(e)
@@ -191,6 +206,10 @@ body
 			{
 				removedTags.splice(removedTags.indexOf(e.value), 1)
 			}
+		}
+		else if (e.name == "Owner")
+		{
+			selectedOwner = e.name;
 		}
 		
 		updateTags();
@@ -232,7 +251,7 @@ body
 	<p id="pictureName" style="text-align: center; width: 100%; font-size: 24px; color: white;"></p>
 	<div style="margin: 0 auto; display: block; width: 100%; text-align: center;">
 		<a id="downloadCR2" class="btn btn-success disabled" href="">Download RAW Image</a>
-		<a id="downloadJpg" class="btn btn-success" href="">Download Image</a>
+		<a id="downloadJpg" class="btn btn-success" href="">Download</a>
 		<a id="downloadEditedJpg" class="btn btn-success disabled" href="">Download Edited Image</a>
 	</div>
 </div>
@@ -275,6 +294,7 @@ body
 						<input type="checkbox" name="Search" value="Group Photo" onchange="onTagsChange(this);"> Group Photo<br/>
 						<input type="checkbox" name="Search" value="Hike" onchange="onTagsChange(this);"> Hike<br/>
 						<input type="checkbox" name="Search" value="Dogs" onchange="onTagsChange(this);"> Dogs<br/>
+						<input type="checkbox" name="Search" value="Video" onchange="onTagsChange(this);"> Video<br/>
 						<input type="checkbox" name="Search" value="Other" onchange="onTagsChange(this);"> Other
 					</form>
 				</td>
@@ -311,7 +331,19 @@ body
 						<input type="checkbox" name="Remove" value="Group Photo" onchange="onTagsChange(this);"> Group Photo<br/>
 						<input type="checkbox" name="Remove" value="Hike" onchange="onTagsChange(this);"> Hike<br/>
 						<input type="checkbox" name="Remove" value="Dogs" onchange="onTagsChange(this);"> Dogs<br/>
+						<input type="checkbox" name="Remove" value="Video" onchange="onTagsChange(this);"> Video<br/>
 						<input type="checkbox" name="Remove" value="Other" onchange="onTagsChange(this);"> Other
+					</form>
+				</td>
+				<td>
+					<h1>Owner</h1>
+					<p>Ticking the below tags will only show pictures taken by that person</p>
+					<form>
+						<input type="radio" name="Owner" value="" onchange="onTagsChange(this);" checked> Anyone<br/>
+						<input type="radio" name="Owner" value="Matthew" onchange="onTagsChange(this);"> Matthew<br/>
+						<input type="radio" name="Owner" value="Dom" onchange="onTagsChange(this);"> Dom<br/>
+						<input type="radio" name="Owner" value="Leah" onchange="onTagsChange(this);"> Leah<br/>
+						<input type="radio" name="Owner" value="Yasmin" onchange="onTagsChange(this);"> Yasmin
 					</form>
 				</td>
 			</tr>
