@@ -82,11 +82,11 @@ body
 	
 	// On window load
 	var rawFile = new XMLHttpRequest();
-	rawFile.open("GET", "info2.txt", false);
+	rawFile.open("GET", "info3.txt", false);
 	rawFile.send();
 	var info = rawFile.responseText.split('\n');
 	
-	console.log("info2.txt");
+	console.log("info3.txt");
 	for (var line in info)
 	{
 		console.log(info[line]);
