@@ -122,7 +122,14 @@ body
 		
 		for (var i = imageCount; i < Math.min(imageCount + 10, taggedImages.length); i++)
 		{
-			document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://drive.google.com/uc?id=" + taggedImages[i].imgId).replace("!!", i);
+			if (taggedImages[i].extensions.indexOf('.mp4') != -1)
+			{
+				document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://drive.google.com/thumbnail?id=" + taggedImages[i].imgId).replace("!!", i);
+			}
+			else
+			{
+				document.getElementById('thumbnails').innerHTML += template.replace("$$", "https://drive.google.com/uc?id=" + taggedImages[i].imgId).replace("!!", i);
+			}
 		}
 		
 		imageCount = Math.min(imageCount + 10, taggedImages.length);
