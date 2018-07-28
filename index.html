@@ -86,10 +86,8 @@ body
 	rawFile.send();
 	var info = rawFile.responseText.split('\n');
 	
-	console.log("info3.txt");
 	for (var line in info)
 	{
-		console.log(info[line]);
 		images.push(new Picture(info[line]));
 		taggedImages.push(new Picture(info[line]));
 	}
@@ -181,6 +179,8 @@ body
 				}
 			}
 		}
+		
+		taggedImages = temp.slice();
 		
 	}
 	
