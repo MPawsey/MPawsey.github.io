@@ -57,6 +57,12 @@ body {
     z-index: 1;
 }
 
+.container:hover .content {
+	height: auto;
+    padding: 20px 30px;
+	color: black;
+}
+
 .container:hover .content img {
 	height: auto;
     padding: 20px 30px;
@@ -202,6 +208,44 @@ img {
     left: 0%;
   }
 }
+
+
+.btn {
+	display: inline-block;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #0275d8;
+    border-color: #0275d8;
+}
+
+.btn:focus, .btn:hover {
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #025aa5;
+    border-color: #01549b;
+}
+
 </style>
 
 <script>
@@ -244,7 +288,7 @@ img {
 	
 </div>
 <span>
-	<button onclick="LoadEntries()" style="margin: 0 auto; display: block;" class="btn btn-primary">Load More Entries</button>
+	<button onclick="LoadEntries()" style="margin: 0 auto; display: block; margin-top: 50px;" class="btn btn-primary">Load More Entries</button>
 </span>
 
 

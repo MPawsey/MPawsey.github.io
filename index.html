@@ -73,7 +73,7 @@ body
 			document.getElementById("video").style.display = "none";
 		}
 		
-		document.getElementById("pictureName").innerHTML = '<img src="RotateACW.png" onclick="RotateLargePicture(-90);" style="position:relative; right: 50px; height: 40px;"></img>' + image.imgName + '<img src="RotateCW.png" onclick="RotateLargePicture(90);" style="position:relative; left: 50px; height: 40px;"></img><br>Time Taken: ' + image.imgDate + " " + image.imgTime + "<br>Taken by " + image.owner;
+		document.getElementById("pictureName").innerHTML = '<img src="RotateACW.png" onclick="RotateLargePicture(-90);" style="position:relative; right: 50px; height: 40px; cursor: pointer;"></img>' + image.imgName + '<img src="RotateCW.png" onclick="RotateLargePicture(90);" style="position:relative; left: 50px; height: 40px; cursor: pointer;"></img><br>Time Taken: ' + image.imgDate + " " + image.imgTime + "<br>Taken by " + image.owner;
 		document.getElementById("downloadCR2").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("downloadJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("permalink").href = "https://drive.google.com/uc?id=" + image.imgId;
@@ -141,7 +141,7 @@ body
 	
 	function updateThumbnails()
 	{
-		var template = "<img style='margin: 15px; width: 250px; max-height: 200px;' src='$$' onclick='showLargeImage(this)' id='!!'></img>";
+		var template = "<img style='margin: 15px; width: 250px; max-height: 200px; cursor: pointer;' src='$$' onclick='showLargeImage(this)' id='!!'></img>";
 		
 		for (var i = imageCount; i < Math.min(imageCount + 25, taggedImages.length); i++)
 		{
@@ -406,7 +406,7 @@ body
 	</span>
 	
 	<span>
-		<button onclick="updateThumbnails()" style="margin: 0 auto; display: block;" class="btn btn-primary">Load More Images</button>
+		<button onclick="updateThumbnails()" style="margin: 0 auto; display: block; cursor: pointer;" class="btn btn-primary">Load More Images</button>
 	</span>
 </span>
 
