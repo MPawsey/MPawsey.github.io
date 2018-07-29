@@ -259,11 +259,11 @@ body {
 	
 	for (var i in images)
 	{
-		if (taggedImages[i].extensions.indexOf('.mp4') != -1)
-			continue;
-			
 		var image = images[i].split(',');
 		
+		if (image.extensions.indexOf('.mp4') != -1)
+			continue;
+			
 		if (prevDate != image[2])
 		{
 			prevDate = image[2];
