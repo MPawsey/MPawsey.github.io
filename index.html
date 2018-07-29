@@ -46,30 +46,33 @@ body
 	var imageCount = 0;
 	var selectedOwner = "";
 	var rotation = 0;
+	var isImage = true;
 	
 	// Loads image
 	function LoadImage()
 	{
 		var image = taggedImages[imgID];
 		
-		document.getElementById("video").style.transform = "translateY(-50%) rotate(0deg)";
 		document.getElementById("picture").style.transform = "translateY(-50%) rotate(0deg)";
+		document.getElementById("video").style.transform = "translateY(-50%) rotate(0deg)";
 		rotation = 0;
 			
 		if (image.extensions.indexOf('.mp4') != -1)
 		{
+			isImage = false;
 			document.getElementById("video").src = "https://drive.google.com/uc?id=" + image.imgId;
 			document.getElementById("video").style.display = "block";
 			document.getElementById("picture").style.display = "none";
 		}
 		else
 		{
+			isImage = true;
 			document.getElementById("picture").src = "https://drive.google.com/uc?id=" + image.imgId;
 			document.getElementById("picture").style.display = "block";
 			document.getElementById("video").style.display = "none";
 		}
 		
-		document.getElementById("pictureName").innerHTML = '<img src="RotateACW.png" onclick="RotateLargePicture(-90);" style="position:relative; right: 50px; height: 50px;"></img>' + image.imgName + '<img src="RotateCW.png" onclick="RotateLargePicture(-90);" style="position:relative; left: 50px; height: 50px;"></img><br>Time Taken: ' + image.imgDate + " " + image.imgTime + "<br>Taken by " + image.owner;
+		document.getElementById("pictureName").innerHTML = '<img src="RotateACW.png" onclick="RotateLargePicture(-90);" style="position:relative; right: 50px; height: 40px;"></img>' + image.imgName + '<img src="RotateCW.png" onclick="RotateLargePicture(90);" style="position:relative; left: 50px; height: 40px;"></img><br>Time Taken: ' + image.imgDate + " " + image.imgTime + "<br>Taken by " + image.owner;
 		document.getElementById("downloadCR2").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("downloadJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("permalink").href = "https://drive.google.com/uc?id=" + image.imgId;
@@ -243,8 +246,21 @@ body
 	function RotateLargePicture(degrees)
 	{
 		rotation += parseInt(degrees);
-		document.getElementById("video").style.transform = "translateY(-50%) rotate(" + rotation + "deg)";
 		document.getElementById("picture").style.transform = "translateY(-50%) rotate(" + rotation + "deg)";
+		document.getElementById("video").style.transform = "translateY(-50%) rotate(" + rotation + "deg)";
+		
+		var media;
+		
+		if (isImage)
+			media = document.getElementById("picture");
+		else
+			media = document.getElementById("video");
+		
+		
+		if (rotation % 180 == 0)
+			document.getElementById('content').style.transform = "scale(1)";
+		else
+			document.getElementById('content').style.transform = "scale(" + (media.clientHeight / media.clientWidth) + ")";
 	}
 	
 </script>
@@ -264,10 +280,12 @@ body
 </span>
 
 <span class="largeImage" style="position: fixed; width: 90%; height: calc(100% - 175px); bottom: 175px; left: 5%; background-color: rgba(0, 0, 0, 0.5); text-align: center;" onclick="hideLargeImage()" >
-	<img id="picture" style="display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; margin: 0 auto; transform: rotate(0deg);" class="VerticalAlgin" src=""></img>
-	<video id="video" controls style="display: none; max-width: 100%; max-height: 100%; width: auto; height: auto; margin: 0 auto; transform: rotate(0deg);" class="VerticalAlgin">
-		<source src="" type="video/mp4" />
-	</video>
+	<div id="content" style="transform: rotate(0deg); width: 100%; height: 100%;">
+		<img id="picture" style="display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; margin: 0 auto; translateY(-50%) transform: rotate(0deg);" class="VerticalAlgin" src="https://drive.google.com/uc?id=1f8YKYu7mooPC_wdOn7HtVg9lY6i04c88"></img>
+		<video id="video" controls style="display: none; max-width: 100%; max-height: 100%; width: auto; height: auto; margin: 0 auto; transform: translateY(-50%) rotate(0deg);" class="VerticalAlgin">
+			<source src="" type="video/mp4" />
+		</video>
+	</div>
 </span>
 
 <div class="largeImage" id="prevImage" style="position: fixed; width: 5%; height: 100%; left: 0; top: 0; background-color: rgba(0, 0, 0, 0.8); display: block; cursor: pointer;" onclick="prevImage()" >
@@ -279,7 +297,7 @@ body
 </div>
 
 <div class="largeImage" id="bottomPanel" style="position: fixed; width: 90%; height: 175px; left: 5%; bottom: 0; background-color: rgba(0, 0, 0, 0.6); padding: 15px; display: block;">
-	<p id="pictureName" style="text-align: center; width: 100%; font-size: 20px; color: white;"><img src="RotateACW.png" onclick="RotateLargePicture(-90);" style="position:relative; right: 50px; height: 50px;"></img>Nothing<img src="RotateCW.png" onclick="RotateLargePicture(-90);" style="position:relative; left: 50px; height: 50px;"></img><br/>Still nothing<br/>Still more nothing</p>
+	<p id="pictureName" style="text-align: center; width: 100%; font-size: 20px; color: white;"><img src="RotateACW.png" onclick="RotateLargePicture(-90);" style="position:relative; right: 50px; height: 40px;"></img>Nothing<img src="RotateCW.png" onclick="RotateLargePicture(90);" style="position:relative; left: 50px; height: 40px;"></img><br/>Still nothing<br/>Still more nothing</p>
 	<div style="margin: 0 auto; display: block; width: 100%; text-align: center;">
 		<a id="downloadCR2" class="btn btn-success disabled" href="" style="display: none;">Download RAW Image</a>
 		<a id="downloadJpg" class="btn btn-success" href="">Download</a>
@@ -394,7 +412,7 @@ body
 
 
 <script>
-hideLargeImage();
+//hideLargeImage();
 updateThumbnails();
 </script>
 </body>
