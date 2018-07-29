@@ -324,7 +324,7 @@ img {
 				if (prevDate == "00-00-00")
 					prevDate = "UNKNOWN";
 					
-				timeline.innerHTML += template.replace('!!', direction + "-label").replace('content', 'content-label').replace('$$', prevDate);
+				timeline.innerHTML += template.replace('!!', direction + " " + direction + "-label").replace('content', 'content-label').replace('$$', prevDate);
 				if (direction == "left")
 					direction = "right";
 				else
