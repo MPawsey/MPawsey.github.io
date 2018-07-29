@@ -2,7 +2,10 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=0.1">
 <title>CERN Trip 2018 Timeline</title>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 <style>
 * {
@@ -240,11 +243,16 @@ body {
 <div id="timeline" class="timeline">
 	
 </div>
-
+<span>
+	<button onclick="LoadEntries()" style="margin: 0 auto; display: block;" class="btn btn-primary">Load More Entries</button>
+</span>
 
 
 <script>
 	prevDate = null;
+	
+	var entries = 0;
+	var entriesAdd = 100;
 	
 	timeline = document.getElementById('timeline');
 	var direction = "left";
@@ -257,33 +265,40 @@ body {
 						'</div>' +
 					'</div>')
 	
-	for (var i in images)
+	function LoadEntries()
 	{
-		var image = images[i];
-		
-		if (image.extensions.indexOf('.mp4') != -1)
-			continue;
-			
-		if (prevDate != image[2])
+		for (var i = entries; i < entries + entriesAdd; i++)
 		{
-			prevDate = image[2];
-			if (prevDate == "00-00-00")
-				prevDate = "UNKNOWN";
+			var image = images[i];
+			
+			if (image.extensions.indexOf('.mp4') != -1)
+				continue;
 				
-			timeline.innerHTML += template.replace('!!', direction + "-label").replace('$$', prevDate);
+			if (prevDate != image[2])
+			{
+				prevDate = image[2];
+				if (prevDate == "00-00-00")
+					prevDate = "UNKNOWN";
+					
+				timeline.innerHTML += template.replace('!!', direction + "-label").replace('$$', prevDate);
+				if (direction == "left")
+					direction = "right";
+				else
+					direction = "left";
+			}
+			
+			timeline.innerHTML += template.replace('!!', direction).replace('$$', '<img src="' + "https://drive.google.com/thumbnail?id=" + image[1] + '"></img>');
+			
 			if (direction == "left")
-				direction = "right";
-			else
-				direction = "left";
+					direction = "right";
+				else
+					direction = "left";
 		}
 		
-		timeline.innerHTML += template.replace('!!', direction).replace('$$', '<img src="' + "https://drive.google.com/uc?id=" + image[1] + '"></img>');
-		
-		if (direction == "left")
-				direction = "right";
-			else
-				direction = "left";
+		entries += entriesAdd;
 	}
+	
+	LoadEntries();
 </script>
 
 </body>
