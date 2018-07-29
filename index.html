@@ -52,8 +52,8 @@ body
 	{
 		var image = taggedImages[imgID];
 		
-		document.getElementById("video").style.transform = "rotate(0deg)";
-		document.getElementById("picture").style.transform = "rotate(0deg)";
+		document.getElementById("video").style.transform = "translateY(-50%) rotate(0deg)";
+		document.getElementById("picture").style.transform = "translateY(-50%) rotate(0deg)";
 		rotation = 0;
 			
 		if (image.extensions.indexOf('.mp4') != -1)
@@ -69,7 +69,7 @@ body
 			document.getElementById("video").style.display = "none";
 		}
 		
-		document.getElementById("pictureName").innerHTML = image.imgName + "<br>Time Taken: " + image.imgDate + " " + image.imgTime + "<br>Taken by " + image.owner;
+		document.getElementById("pictureName").innerHTML = '<img src="RotateACW.png" onclick="RotateLargePicture(-90);" style="position:relative; right: 50px; height: 50px;"></img>' + image.imgName + '<img src="RotateCW.png" onclick="RotateLargePicture(-90);" style="position:relative; left: 50px; height: 50px;"></img><br>Time Taken: ' + image.imgDate + " " + image.imgTime + "<br>Taken by " + image.owner;
 		document.getElementById("downloadCR2").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("downloadJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("permalink").href = "https://drive.google.com/uc?id=" + image.imgId;
@@ -243,8 +243,8 @@ body
 	function RotateLargePicture(degrees)
 	{
 		rotation += parseInt(degrees);
-		document.getElementById("video").style.transform = "rotate(" + rotation + "deg)";
-		document.getElementById("picture").style.transform = "rotate(" + rotation + "deg)";
+		document.getElementById("video").style.transform = "translateY(-50%) rotate(" + rotation + "deg)";
+		document.getElementById("picture").style.transform = "translateY(-50%) rotate(" + rotation + "deg)";
 	}
 	
 </script>
