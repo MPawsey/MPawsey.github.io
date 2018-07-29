@@ -258,10 +258,16 @@ body
 			media = document.getElementById("video");
 		
 		
+		
 		if (rotation % 180 == 0)
 			document.getElementById('content').style.transform = "scale(1)";
 		else
-			document.getElementById('content').style.transform = "scale(" + (document.getElementById('content').clientHeight / media.clientWidth) + ")";
+		{
+			if (mw < mh)
+				document.getElementById('content').style.transform = "scale(" + (document.getElementById('content').clientWidth / media.clientHeight) + ")";
+			else
+				document.getElementById('content').style.transform = "scale(" + (document.getElementById('content').clientHeight / media.clientWidth) + ")";
+		}
 	}
 	
 </script>
