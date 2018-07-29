@@ -67,6 +67,7 @@ body
 		document.getElementById("pictureName").innerHTML = image.imgName + "<br>Time Taken: " + image.imgDate + " " + image.imgTime + "<br>Taken by " + image.owner;
 		document.getElementById("downloadCR2").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 		document.getElementById("downloadJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
+		document.getElementById("permalink").href = "https://drive.google.com/uc?id=" + image.imgId;
 		document.getElementById("downloadEditedJpg").href = "https://drive.google.com/uc?export=download&id=" + image.imgId;
 	}
 	
@@ -275,9 +276,10 @@ body
 <div class="largeImage" id="bottomPanel" style="position: fixed; width: 90%; height: 175px; left: 5%; bottom: 0; background-color: rgba(0, 0, 0, 0.6); padding: 15px; display: block;">
 	<p id="pictureName" style="text-align: center; width: 100%; font-size: 20px; color: white;">Nothing<br/>Still nothing<br/>Still more nothing</p>
 	<div style="margin: 0 auto; display: block; width: 100%; text-align: center;">
-		<a id="downloadCR2" class="btn btn-success disabled" href="">Download RAW Image</a>
+		<a id="downloadCR2" class="btn btn-success disabled" href="" style="display: none;">Download RAW Image</a>
 		<a id="downloadJpg" class="btn btn-success" href="">Download</a>
-		<a id="downloadEditedJpg" class="btn btn-success disabled" href="">Download Edited Image</a>
+		<a id="permalink" class="btn btn-success" href="">Image Link</a>
+		<a id="downloadEditedJpg" class="btn btn-success disabled" href="" style="display: none;>Download Edited Image</a>
 	</div>
 </div>
 
