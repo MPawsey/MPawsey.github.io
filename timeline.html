@@ -274,9 +274,9 @@ body {
 			if (image.extensions.indexOf('.mp4') != -1)
 				continue;
 				
-			if (prevDate != image[2])
+			if (prevDate != image.imgDate)
 			{
-				prevDate = image[2];
+				prevDate = image.imgDate;
 				if (prevDate == "00-00-00")
 					prevDate = "UNKNOWN";
 					
@@ -287,7 +287,7 @@ body {
 					direction = "left";
 			}
 			
-			timeline.innerHTML += template.replace('!!', direction).replace('$$', '<img src="' + "https://drive.google.com/thumbnail?id=" + image[1] + '"></img>');
+			timeline.innerHTML += template.replace('!!', direction).replace('$$', '<img src="' + "https://drive.google.com/thumbnail?id=" + image.imgId + '"></img>');
 			
 			if (direction == "left")
 					direction = "right";
