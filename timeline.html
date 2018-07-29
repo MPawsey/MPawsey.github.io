@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=0.1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CERN Trip 2018 Timeline</title>
 
 <style>
@@ -57,7 +57,7 @@ body {
     z-index: 1;
 }
 
-.container:hover .content {
+.container:hover .content img {
 	height: auto;
     padding: 20px 30px;
 	color: black;
@@ -155,6 +155,10 @@ body {
     border-radius: 6px;
 	height: 0;
 	transition: 0.5s;
+}
+
+img {
+	height: 0;
 }
 
 /* If the container is a label */
@@ -276,7 +280,7 @@ body {
 				if (prevDate == "00-00-00")
 					prevDate = "UNKNOWN";
 					
-				timeline.innerHTML += template.replace('!!', direction + "-label").replace('$$', prevDate);
+				timeline.innerHTML += template.replace('!!', direction).replace('content', 'content-label').replace('$$', prevDate);
 				if (direction == "left")
 					direction = "right";
 				else
