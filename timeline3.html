@@ -1,0 +1,291 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=0.1">
+<title>CERN Trip 2018 Timeline</title>
+
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+.picture-box {
+	width: 100%;
+	height: 250px;
+	padding: 0;
+	margin: 0;
+}
+
+.picture {
+	display: block; 
+	max-width: 100%; 
+	max-height: 100%; 
+	width: auto; 
+	height: auto; 
+	margin: 0 auto;
+}
+
+body {
+    background-color: #474e5d;
+    font-family: Helvetica, sans-serif;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+
+/* Container around content */
+.container {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    z-index: 1;
+}
+
+.container:hover .content {
+	height: auto;
+    padding: 20px 30px;
+	color: black;
+}
+
+/* The circles on the timeline */
+.container::after {
+    content: '';
+	visibility: visible;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: white;
+    border: 4px solid #FF9F55;
+    top: 15px;
+    border-radius: 50%;
+}
+
+/* Place the container to the left */
+.left {
+    left: 0;
+}
+
+/* Place the container to the right */
+.right {
+    left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 37px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.left-label::before {
+    border: medium solid orange;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent orange;
+	opacity: 1;
+}
+
+.right-label::before {
+    border: medium solid orange;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent orange;
+	opacity: 1;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 37px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+	opacity: 0;
+	transition: 0.5s;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+    left: -16px;
+}
+
+.left:hover:before {
+	opacity: 1;
+}
+
+.right:hover:before {
+	opacity: 1;
+}
+
+/* The actual content */
+.content {
+	color: transparent;
+	padding: 0;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+	height: 0;
+	transition: 0.5s;
+}
+
+/* If the container is a label */
+.content-label {
+	color: black;
+	height: auto;
+    background-color: orange;
+	font-weight: bold;
+    padding: 20px 30px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  /* Place the timeline to the left */
+  .timeline::after {
+    left: 31px;
+  }
+  
+  /* Full-width containers */
+  .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  
+  /* Make sure that all arrows are pointing leftwards */
+  .container::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+    left: 15px;
+  }
+  
+  /* Make all right containers behave like the left ones */
+  .right {
+    left: 0%;
+  }
+}
+</style>
+
+<script>
+	// Picture Class
+	function Picture(imageInfo)
+	{
+		data = imageInfo.split(',');
+		this.imgName = data[0];
+		this.imgId = data[1];
+		this.imgDate = data[2];
+		this.imgTime = data[3];
+		this.tags = data[4].split('|');
+		this.lists = data[5].split('|');
+		this.hasEdited = (data[6] == "true");
+		this.extensions = data[7].split('|');
+		this.owner = data[8];
+	}
+
+	// On window load
+	var images = [];
+	var rawFile = new XMLHttpRequest();
+	rawFile.open("GET", "info5.txt", false);
+	rawFile.send();
+	var info = rawFile.responseText.split('\n');
+	
+	for (var line in info)
+	{
+		images.push(new Picture(info[line]));
+	}
+	
+	
+</script>
+
+</head>
+
+
+<body>
+
+<div id="timeline" class="timeline">
+	
+</div>
+
+
+
+<script>
+	prevDate = null;
+	
+	timeline = document.getElementById('timeline');
+	var direction = "left";
+	
+	var template = ('<div class="container !!">' +
+						'<div style="padding-top: 15">' +
+							'<div class="content">' +
+								'$$' +
+							'</div>' +
+						'</div>' +
+					'</div>')
+	
+	for (var i in images)
+	{
+		if (taggedImages[i].extensions.indexOf('.mp4') != -1)
+			continue;
+			
+		var image = images[i].split(',');
+		
+		if (prevDate != image[2])
+		{
+			prevDate = image[2];
+			if (prevDate == "00-00-00")
+				prevDate = "UNKNOWN";
+				
+			timeline.innerHTML += template.replace('!!', direction + "-label").replace('$$', prevDate);
+			if (direction == "left")
+				direction = "right";
+			else
+				direction = "left";
+		}
+		
+		timeline.innerHTML += template.replace('!!', direction).replace('$$', '<img src="' + "https://drive.google.com/uc?id=" + image[1] + '"></img>');
+		
+		if (direction == "left")
+				direction = "right";
+			else
+				direction = "left";
+	}
+</script>
+
+</body>
+
+</html>
