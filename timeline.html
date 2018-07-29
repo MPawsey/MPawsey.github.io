@@ -202,6 +202,21 @@ body {
 </style>
 
 <script>
+	// Picture Class
+	function Picture(imageInfo)
+	{
+		data = imageInfo.split(',');
+		this.imgName = data[0];
+		this.imgId = data[1];
+		this.imgDate = data[2];
+		this.imgTime = data[3];
+		this.tags = data[4].split('|');
+		this.lists = data[5].split('|');
+		this.hasEdited = (data[6] == "true");
+		this.extensions = data[7].split('|');
+		this.owner = data[8];
+	}
+
 	// On window load
 	var images = [];
 	var rawFile = new XMLHttpRequest();
