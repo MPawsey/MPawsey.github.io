@@ -132,7 +132,7 @@ body
 	
 	function updateThumbnails()
 	{
-		var template = "<img style='margin: 15px; width: 250px;' src='$$' onclick='showLargeImage(this)' id='!!'></img>";
+		var template = "<img style='margin: 15px; width: 250px; max-height: 200px;' src='$$' onclick='showLargeImage(this)' id='!!'></img>";
 		
 		for (var i = imageCount; i < Math.min(imageCount + 10, taggedImages.length); i++)
 		{
