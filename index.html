@@ -260,7 +260,7 @@ body
 		if (rotation % 180 == 0)
 			document.getElementById('content').style.transform = "scale(1)";
 		else
-			document.getElementById('content').style.transform = "scale(" + (media.clientHeight / media.clientWidth) + ")";
+			document.getElementById('content').style.transform = "scale(" + (document.getElementById('content').clientHeight / media.clientWidth) + ")";
 	}
 	
 </script>
