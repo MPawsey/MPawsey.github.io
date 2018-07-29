@@ -263,7 +263,7 @@ body
 			document.getElementById('content').style.transform = "scale(1)";
 		else
 		{
-			if (mw < mh)
+			if (media.clientWidth < media.clientHeight)
 				document.getElementById('content').style.transform = "scale(" + (document.getElementById('content').clientWidth / media.clientHeight) + ")";
 			else
 				document.getElementById('content').style.transform = "scale(" + (document.getElementById('content').clientHeight / media.clientWidth) + ")";
