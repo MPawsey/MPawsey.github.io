@@ -83,6 +83,34 @@ body {
     border-radius: 50%;
 }
 
+.container-1::after {
+    border: 4px solid #85C1E9;
+}
+
+.container-2::after {
+    border: 4px solid #FF9F55;
+}
+
+.container-3::after {
+    border: 4px solid #CCD1D1;
+}
+
+.container-4::after {
+    border: 4px solid #CD6155;
+}
+
+.container-5::after {
+    border: 4px solid #D6EAF8;
+}
+
+.container-6::after {
+    border: 4px solid #148F77;
+}
+
+.container-7::after {
+    border: 4px solid #FCF3CF;
+}
+
 .container-Matthew::after {
 	background-color: green;
 }
@@ -92,7 +120,7 @@ body {
 }
 
 .container-Leah::after {
-	background-color: gray;
+	background-color: #17202A;
 }
 
 .container-Yasmin::after {
@@ -132,13 +160,6 @@ body {
 	opacity: 1;
 }
 
-.right-label::before {
-    border: medium solid orange;
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent orange;
-	opacity: 1;
-}
-
 /* Add arrows to the right container (pointing left) */
 .right::before {
     content: " ";
@@ -153,6 +174,13 @@ body {
     border-color: transparent white transparent transparent;
 	opacity: 0;
 	transition: 0.5s;
+}
+
+.right-label::before {
+    border: medium solid orange;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent orange;
+	opacity: 1;
 }
 
 /* Fix the circle for containers on the right side */
@@ -192,6 +220,34 @@ img {
     padding: 20px 30px;
 }
 
+.content-1 {
+    background-color: #85C1E9;
+}
+
+.content-2 {
+    background-color: #FF9F55;
+}
+
+.content-3 {
+    background-color: #CCD1D1;
+}
+
+.content-4 {
+    background-color: #CD6155;
+}
+
+.content-5 {
+    background-color: #D6EAF8;
+}
+
+.content-6 {
+    background-color: #148F77;
+}
+
+.content-7 {
+    background-color: #FCF3CF;
+}
+
 /* Media queries - Responsive timeline on screens less than 600px wide */
 @media screen and (max-width: 600px) {
   /* Place the timeline to the left */
@@ -209,9 +265,9 @@ img {
   /* Make sure that all arrows are pointing leftwards */
   .container::before {
     left: 60px;
-    border: medium solid white;
+    border: medium solid orange;
     border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
+    border-color: transparent orange transparent transparent;
   }
 
   /* Make sure all circles are at the same spot */
@@ -304,7 +360,7 @@ img {
 	
 </div>
 <span>
-	<button onclick="LoadEntries()" style="margin: 0 auto; display: block; margin-top: 50px;" class="btn btn-primary">Load More Entries</button>
+	<button onclick="LoadEntries()" style="margin: 0 auto; display: block; margin-top: 50px; cursor: pointer;" class="btn btn-primary">Load More Entries</button>
 </span>
 
 
@@ -312,7 +368,8 @@ img {
 	prevDate = null;
 	
 	var entries = 0;
-	var entriesAdd = 500;
+	var entriesAdd = 250;
+	var day = 0;
 	
 	timeline = document.getElementById('timeline');
 	var direction = "left";
@@ -334,20 +391,22 @@ img {
 			if (image.extensions.indexOf('.mp4') != -1)
 				continue;
 				
-			if (prevDate != image.imgDate)
+			if (prevDate != image.imgDate || prevDate == "UNKNOWN")
 			{
+				day += 1;
+				
 				prevDate = image.imgDate;
 				if (prevDate == "00-00-00")
 					prevDate = "UNKNOWN";
 					
-				timeline.innerHTML += template.replace('!!', direction + " " + direction + "-label").replace('content', 'content-label').replace('$$', prevDate);
+				timeline.innerHTML += template.replace('!!', "container-" + day + " " + directiondirection + " " + direction + "-label").replace('content', 'content-label content-' + day).replace('$$', prevDate);
 				if (direction == "left")
 					direction = "right";
 				else
 					direction = "left";
 			}
 			
-			timeline.innerHTML += template.replace('!!', "container-" + image.owner + " " + direction).replace('$$', '<img style="max-width: 100%; max-height: 100%; width: auto; height: auto;" src="' + "https://drive.google.com/thumbnail?id=" + image.imgId + '"></img>');
+			timeline.innerHTML += template.replace('!!', "container-" + image.owner + " container-" + day + " " + direction).replace('$$', '<img style="max-width: 100%; max-height: 100%; width: auto; height: auto;" src="' + "https://drive.google.com/thumbnail?id=" + image.imgId + '"></img>');
 			
 			if (direction == "left")
 					direction = "right";
