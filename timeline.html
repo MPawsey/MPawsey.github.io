@@ -57,13 +57,13 @@ body {
     z-index: 1;
 }
 
-.container:hover .content {
+.container:active .content {
 	height: auto;
     padding: 20px 30px;
 	color: black;
 }
 
-.container:hover .content img {
+.container:active .content img {
 	height: auto;
     padding: 20px 30px;
 	color: black;
@@ -178,7 +178,7 @@ body {
 
 .right-label::before {
     border: medium solid orange;
-    border-width: 10px 0 10px 10px;
+    border-width: 10px 10px 10px 0;
     border-color: transparent transparent transparent orange;
 	opacity: 1;
 }
@@ -188,11 +188,11 @@ body {
     left: -16px;
 }
 
-.left:hover:before {
+.left:active:before {
 	opacity: 1;
 }
 
-.right:hover:before {
+.right:active:before {
 	opacity: 1;
 }
 
@@ -308,14 +308,18 @@ img {
     border-color: #0275d8;
 }
 
-.btn:focus, .btn:hover {
+.btn:focus, .btn:active {
     text-decoration: none;
 }
 
-.btn-primary:hover {
+.btn-primary:active {
     color: #fff;
     background-color: #025aa5;
     border-color: #01549b;
+}
+
+.visible {
+	
 }
 
 </style>
@@ -406,7 +410,7 @@ img {
 					direction = "left";
 			}
 			
-			timeline.innerHTML += template.replace('!!', "container-" + image.owner + " container-" + day + " " + direction).replace('$$', '<img style="max-width: 100%; max-height: 100%; width: auto; height: auto;" src="' + "https://drive.google.com/thumbnail?id=" + image.imgId + '"></img>');
+			timeline.innerHTML += template.replace('!!', "container-" + image.owner + " container-" + day + " " + direction).replace('content', 'content content-' + day).replace('$$', '<img style="max-width: 100%; max-height: 100%; width: auto; height: auto;" src="' + "https://drive.google.com/thumbnail?id=" + image.imgId + '"></img>');
 			
 			if (direction == "left")
 					direction = "right";
