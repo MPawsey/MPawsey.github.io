@@ -57,13 +57,13 @@ body {
     z-index: 1;
 }
 
-.container:active .content {
+.visible .content {
 	height: auto;
     padding: 20px 30px;
 	color: black;
 }
 
-.container:active .content img {
+.visible .content img {
 	height: auto;
     padding: 20px 30px;
 	color: black;
@@ -188,11 +188,11 @@ body {
     left: -16px;
 }
 
-.left:active:before {
+.visible .left::before {
 	opacity: 1;
 }
 
-.right:active:before {
+.visible .right::before {
 	opacity: 1;
 }
 
@@ -318,10 +318,6 @@ img {
     border-color: #01549b;
 }
 
-.visible {
-	
-}
-
 </style>
 
 <script>
@@ -358,9 +354,9 @@ img {
 </head>
 
 
-<body>
+<body onclick="ExpandEntry(null);">
 
-<div id="timeline" class="timeline">
+<div id="timeline" class="timeline" onclick="ExpandEntry(null);">
 	
 </div>
 <span>
@@ -374,11 +370,12 @@ img {
 	var entries = 0;
 	var entriesAdd = 250;
 	var day = 0;
+	var currentContainer = null;
 	
 	timeline = document.getElementById('timeline');
 	var direction = "left";
 	
-	var template = ('<div class="container !!">' +
+	var template = ('<div class="container !!" onclick="ExpandEntry(this);">' +
 						'<div style="padding-top: 15">' +
 							'<div class="content">' +
 								'$$' +
@@ -419,6 +416,21 @@ img {
 		}
 		
 		entries += entriesAdd;
+	}
+	
+	function ExpandEntry(e)
+	{
+		if (currentContainer != null)
+		{
+			currentContainer.classList.remove("visible");
+		}
+		
+		if (e != null)
+		{
+			e.classList.add("visible");
+		}
+		
+		currentContainer = e;
 	}
 	
 	LoadEntries();
