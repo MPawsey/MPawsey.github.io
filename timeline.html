@@ -142,7 +142,7 @@ body {
     content: " ";
     height: 0;
     position: absolute;
-    top: 37px;
+    top: 30px;
     width: 0;
     z-index: 1;
     right: 30px;
@@ -325,6 +325,34 @@ img {
     border-width: 10px 10px 10px 0;
     border-color: transparent orange transparent transparent;
   }
+  
+	.container-1::before {
+		border-color: transparent #85C1E9 transparent transparent;
+	}
+
+	.container-2::before {
+		border-color: transparent #FF9F55 transparent transparent;
+	}
+
+	.container-3::before {
+		border-color: transparent #CCD1D1 transparent transparent;
+	}
+
+	.container-4::before {
+		border-color: transparent #CD6155 transparent transparent;
+	}
+
+	.container-5::before {
+		border-color: transparent #D6EAF8 transparent transparent;
+	}
+
+	.container-6::before {
+		border-color: transparent #148F77 transparent transparent;
+	}
+
+	.container-7::before {
+		border-color: transparent #FCF3CF transparent transparent;
+	}
 
   /* Make sure all circles are at the same spot */
   .left::after, .right::after {
@@ -471,7 +499,7 @@ img {
 </ul>
 
 <div id="key" onclick="HideKey();" class="key">
-	<div style="position: fixed; width: 50%; height: 50%; left: 25%; top: 25%; background-color: #222; text-align: center; padding: 50px; color: white;">
+	<div style="position: fixed; width: 80%; height: auto; left: 10%; top: 125px; background-color: #222; text-align: center; padding: 15; color: white;">
 		<p>The timeline works by colour. The outline of the circle represents the day the photo was taken. The inside shows who took the photo.</p>
 		<p> Outline (date):
 			<ul style="list-style-type: none; color: black;">
@@ -495,7 +523,7 @@ img {
 	</div>
 </div>
 
-<div id="timeline" class="timeline" style="top: 50px;">
+<div id="timeline" class="timeline" style="top: 100px;">
 
 </div>
 
