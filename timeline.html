@@ -83,6 +83,22 @@ body {
     border-radius: 50%;
 }
 
+.container-Matthew::after {
+	background-color: green;
+}
+
+.container-Dom::after {
+	background-color: blue;
+}
+
+.container-Leah::after {
+	background-color: gray;
+}
+
+.container-Yasmin::after {
+	background-color: yellow;
+}
+
 /* Place the container to the left */
 .left {
     left: 0;
@@ -296,7 +312,7 @@ img {
 	prevDate = null;
 	
 	var entries = 0;
-	var entriesAdd = 100;
+	var entriesAdd = 500;
 	
 	timeline = document.getElementById('timeline');
 	var direction = "left";
@@ -331,7 +347,7 @@ img {
 					direction = "left";
 			}
 			
-			timeline.innerHTML += template.replace('!!', direction).replace('$$', '<img style="max-width: 100%; max-height: 100%; width: auto; height: auto;" src="' + "https://drive.google.com/thumbnail?id=" + image.imgId + '"></img>');
+			timeline.innerHTML += template.replace('!!', "container-" + image.owner + direction).replace('$$', '<img style="max-width: 100%; max-height: 100%; width: auto; height: auto;" src="' + "https://drive.google.com/thumbnail?id=" + image.imgId + '"></img>');
 			
 			if (direction == "left")
 					direction = "right";
