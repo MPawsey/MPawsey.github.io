@@ -358,14 +358,10 @@ img {
 	width: 100%; 
 	height: 100%; 
 	background-color: 
-	rgba(0, 0, 0, 0.7); 
+	rgba(0, 0, 0, 0.4); 
 	z-index: 101;
-	opacity: 0;
+	display: none;
 	transition: 0.4s;
-}
-
-.key-visible {
-	opacity: 1;
 }
 
 </style>
@@ -418,27 +414,27 @@ img {
 	<li style="float: right;"><a href="index.html">Return</a></li>
 </ul>
 
-<div id="key" onclick="HideKey();">
-	<div style="position: fixed; width: 50%; height: 50%; left: 25%; top: 25%; background-color: #fff; text-align: center;">
+<div id="key" onclick="HideKey();" class="key">
+	<div style="position: fixed; width: 50%; height: 50%; left: 25%; top: 25%; background-color: #222; text-align: center; padding: 50px; color: white;">
 		<p>The timeline works by colour. The outline of the circle represents the day the photo was taken. The inside shows who took the photo.</p>
 		<p> Outline (date):
-		<ul>
-			<li class="content-1">20th</li>
-			<li class="content-2">21th</li>
-			<li class="content-3">22th</li>
-			<li class="content-4">23th</li>
-			<li class="content-5">24th</li>
-			<li class="content-6">25th</li>
-			<li class="content-7">Unkown Date</li>
-		</ul>
+			<ul style="list-style-type: none; color: black;">
+				<li class="content-1">20th</li>
+				<li class="content-2">21th</li>
+				<li class="content-3">22th</li>
+				<li class="content-4">23th</li>
+				<li class="content-5">24th</li>
+				<li class="content-6">25th</li>
+				<li class="content-7">Unkown Date</li>
+			</ul>
 		</p>
 		<p> Fill colour (photo owner)
-			<ul>
-			<li style="background-color: green;">Matthew</li>
-			<li style="background-color: blue;">Dom</li>
-			<li style="background-color: #17202A;">Leah</li>
-			<li style="background-color: yellow;">Yasmin</li>
-		</ul>
+			<ul style="list-style-type: none; color: black;">
+				<li style="background-color: green;">Matthew</li>
+				<li style="background-color: lightblue;">Dom</li>
+				<li style="background-color: pink;">Leah</li>
+				<li style="background-color: yellow;">Yasmin</li>
+			</ul>
 		</p>
 	</div>
 </div>
@@ -546,12 +542,12 @@ img {
 	
 	function ShowKey()
 	{
-		document.getElementById('key').classList.add('key-visible');
+		document.getElementById('key').style.display = "block";
 	}
 	
 	function HideKey()
 	{
-		document.getElementById('key').classList.remove('key-visible')
+		document.getElementById('key').style.display = "none";
 	}
 	
 	LoadEntries();
