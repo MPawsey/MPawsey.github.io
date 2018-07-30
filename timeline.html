@@ -356,7 +356,7 @@ img {
 
 <body onclick="ExpandEntry(null);">
 
-<div id="timeline" class="timeline" onclick="ExpandEntry(null);">
+<div id="timeline" class="timeline">
 	
 </div>
 <span>
@@ -375,7 +375,7 @@ img {
 	timeline = document.getElementById('timeline');
 	var direction = "left";
 	
-	var template = ('<div class="container !!" onclick="ExpandEntry(this);">' +
+	var template = ('<div class="container !!">' +
 						'<div style="padding-top: 15">' +
 							'<div class="content">' +
 								'$$' +
@@ -387,6 +387,8 @@ img {
 	{
 		for (var i = entries; i < entries + entriesAdd; i++)
 		{
+			var temp = document.createElement("div");
+			
 			var image = images[i];
 			
 			if (image.extensions.indexOf('.mp4') != -1)
@@ -394,21 +396,31 @@ img {
 				
 			if (prevDate != image.imgDate || prevDate == "UNKNOWN")
 			{
+				var temp2 = document.createElement("div");
 				day += 1;
 				
 				prevDate = image.imgDate;
 				if (prevDate == "00-00-00")
 					prevDate = "UNKNOWN";
 					
-				timeline.innerHTML += template.replace('!!', "container-" + day + " " + direction + " " + direction + "-label").replace('content', 'content-label content-' + day).replace('$$', prevDate);
+				temp2.innerHTML = template.replace('!!', "container-" + day + " " + direction + " " + direction + "-label").replace('content', 'content-label content-' + day).replace('$$', prevDate);
+				timeline.appendChild(temp2.firstChild)
+				
 				if (direction == "left")
 					direction = "right";
 				else
 					direction = "left";
+					
 			}
 			
-			timeline.innerHTML += template.replace('!!', "container-" + image.owner + " container-" + day + " " + direction).replace('content', 'content content-' + day).replace('$$', '<img style="max-width: 100%; max-height: 100%; width: auto; height: auto;" src="' + "https://drive.google.com/thumbnail?id=" + image.imgId + '"></img>');
+			temp.innerHTML = template.replace('!!', "container-" + image.owner + " container-" + day + " " + direction).replace('content', 'content content-' + day).replace('$$', '<img style="max-width: 100%; max-height: 100%; width: auto; height: auto;" src="' + "https://drive.google.com/thumbnail?id=" + image.imgId + '"></img>');
+			temp.firstChild.onclick = function(e) {
+				e.stopPropagation();
+				ExpandEntry(this);
+			}
 			
+			timeline.appendChild(temp2.firstChild)
+				
 			if (direction == "left")
 					direction = "right";
 				else
@@ -428,11 +440,13 @@ img {
 		if (e != null)
 		{
 			e.classList.add("visible");
+			
 		}
 		
 		currentContainer = e;
 	}
 	
+	CreateTemplate();
 	LoadEntries();
 </script>
 
