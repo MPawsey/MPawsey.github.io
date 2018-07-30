@@ -43,7 +43,6 @@ body
 	var taggedImages = [];
 	var searchTags = [];
 	var removedTags = [];
-	var imageCount = 0;
 	var selectedOwner = "";
 	var rotation = 0;
 	var isImage = true;
@@ -143,16 +142,12 @@ body
 	{
 		var template = "<img style='margin: 15px; width: 250px; max-height: 200px; cursor: pointer;' src='$$' onclick='showLargeImage(this)' id='!!'></img>";
 		
-		for (var i = imageCount; i < Math.min(imageCount + 250, taggedImages.length); i++)
+		for (var i = 0; i < taggedImages.length; i++)
 		{
 			var temp = document.createElement("div");
 			temp.innerHTML = template.replace("$$", "https://drive.google.com/thumbnail?id=" + taggedImages[i].imgId).replace("!!", i);
 			document.getElementById('thumbnails').appendChild(temp.firstChild);
 		}
-		
-		imageCount = Math.min(imageCount + 250, taggedImages.length);
-		if (imageCount == taggedImages.length)
-			document.getElementById('loadMoreButton').display = "none";
 	}
 	
 	function updateTags()
@@ -244,7 +239,6 @@ body
 		updateTags();
 		document.getElementById('thumbnails').innerHTML = "";
 		imgID = 0;
-		imageCount = 0;
 		updateThumbnails();
 	}
 	
@@ -413,10 +407,6 @@ body
 	
 	<span id="thumbnails" style="padding: 15px; text-align: center;">
 		
-	</span>
-	
-	<span id="loadMoreButton">
-		<button onclick="updateThumbnails()" style="margin: 0 auto; display: block; cursor: pointer;" class="btn btn-primary">Load More Images</button>
 	</span>
 </span>
 

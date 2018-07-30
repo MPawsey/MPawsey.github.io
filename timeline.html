@@ -83,50 +83,6 @@ body {
     border-radius: 50%;
 }
 
-.container-1::after {
-    border: 4px solid #85C1E9;
-}
-
-.container-2::after {
-    border: 4px solid #FF9F55;
-}
-
-.container-3::after {
-    border: 4px solid #CCD1D1;
-}
-
-.container-4::after {
-    border: 4px solid #CD6155;
-}
-
-.container-5::after {
-    border: 4px solid #D6EAF8;
-}
-
-.container-6::after {
-    border: 4px solid #148F77;
-}
-
-.container-7::after {
-    border: 4px solid #FCF3CF;
-}
-
-.container-Matthew::after {
-	background-color: green;
-}
-
-.container-Dom::after {
-	background-color: blue;
-}
-
-.container-Leah::after {
-	background-color: #17202A;
-}
-
-.container-Yasmin::after {
-	background-color: yellow;
-}
-
 /* Place the container to the left */
 .left {
     left: 0;
@@ -179,7 +135,7 @@ body {
 .right-label::before {
     border: medium solid orange;
     border-width: 10px 10px 10px 0;
-    border-color: transparent transparent transparent orange;
+    border-color: transparent orange transparent transparent;
 	opacity: 1;
 }
 
@@ -194,6 +150,50 @@ body {
 
 .visible .right::before {
 	opacity: 1;
+}
+
+.container-1::before, .container-1::after {
+    border: 4px solid #85C1E9;
+}
+
+.container-2::before, .container-2::after {
+    border: 4px solid #FF9F55;
+}
+
+.container-3::before, .container-3::after {
+    border: 4px solid #CCD1D1;
+}
+
+.container-4::before, .container-4::after {
+    border: 4px solid #CD6155;
+}
+
+.container-5::before, .container-5::after {
+    border: 4px solid #D6EAF8;
+}
+
+.container-6::before, .container-6::after {
+    border: 4px solid #148F77;
+}
+
+.container-7::before, .container-7::after {
+    border: 4px solid #FCF3CF;
+}
+
+.container-Matthew::after {
+	background-color: green;
+}
+
+.container-Dom::after {
+	background-color: blue;
+}
+
+.container-Leah::after {
+	background-color: #17202A;
+}
+
+.container-Yasmin::after {
+	background-color: yellow;
 }
 
 /* The actual content */
@@ -442,16 +442,11 @@ img {
 <div id="timeline" class="timeline" style="top: 50px;">
 
 </div>
-<!--span>
-	<button onclick="LoadEntries()" style="margin: 0 auto; display: block; margin-top: 50px; cursor: pointer;" class="btn btn-primary">Load More Entries</button>
-</span-->
 
 
 <script>
 	prevDate = null;
 	
-	var entries = 0;
-	//var entriesAdd = 250;
 	var day = 0;
 	var currentContainer = null;
 	
@@ -515,8 +510,6 @@ img {
 				else
 					direction = "left";
 		}
-		
-		//entries += entriesAdd;
 	}
 	
 	function ExpandEntry(e)
