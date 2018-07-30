@@ -319,7 +319,7 @@ img {
 }
 
 
-ul {
+.navbar {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -329,9 +329,10 @@ ul {
 	padding: 0;
 	overflow: hidden;
 	background-color: #333;
+	z-index: 100;
 }
 
-li {
+.navbar li {
 	float: left;
     display: block;
     color: white;
@@ -341,13 +342,30 @@ li {
 	cursor: pointer;
 }
 
-li:hover {
+.navbar li:hover {
     background-color: #111;
 }
 
-li a {
+.navbar li a {
     color: white;
     text-decoration: none;
+}
+
+.key {
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	width: 100%; 
+	height: 100%; 
+	background-color: 
+	rgba(0, 0, 0, 0.7); 
+	z-index: 101;
+	opacity: 0;
+	transition: 0.4s;
+}
+
+.key-visible {
+	opacity: 1;
 }
 
 </style>
@@ -388,7 +406,7 @@ li a {
 
 <body onclick="ExpandEntry(null);">
 
-<ul id="navbar">
+<ul id="navbar" class="navbar">
 	<li onclick="ShowKey();">Key</li>
 	<li onclick="JumpTo('20');">20th</li>
 	<li onclick="JumpTo('21');">21st</li>
@@ -399,6 +417,31 @@ li a {
 	<li onclick="JumpTo('0');">Unkown Date</li>
 	<li style="float: right;"><a href="index.html">Return</a></li>
 </ul>
+
+<div id="key" onclick="HideKey();">
+	<div style="position: fixed; width: 50%; height: 50%; left: 25%; top: 25%; background-color: #fff; text-align: center;">
+		<p>The timeline works by colour. The outline of the circle represents the day the photo was taken. The inside shows who took the photo.</p>
+		<p> Outline (date):
+		<ul>
+			<li class="content-1">20th</li>
+			<li class="content-2">21th</li>
+			<li class="content-3">22th</li>
+			<li class="content-4">23th</li>
+			<li class="content-5">24th</li>
+			<li class="content-6">25th</li>
+			<li class="content-7">Unkown Date</li>
+		</ul>
+		</p>
+		<p> Fill colour (photo owner)
+			<ul>
+			<li style="background-color: green;">Matthew</li>
+			<li style="background-color: blue;">Dom</li>
+			<li style="background-color: #17202A;">Leah</li>
+			<li style="background-color: yellow;">Yasmin</li>
+		</ul>
+		</p>
+	</div>
+</div>
 
 <div id="timeline" class="timeline" style="top: 50px;">
 
@@ -498,7 +541,17 @@ li a {
 	
 	function JumpTo(day)
 	{
-		window.scroll(0, document.getElementsByClassName(day).offsetTop - 150)
+		window.scroll(0, document.getElementById(day).offsetTop - 150)
+	}
+	
+	function ShowKey()
+	{
+		document.getElementById('key').classList.add('key-visible');
+	}
+	
+	function HideKey()
+	{
+		document.getElementById('key').classList.remove('key-visible')
 	}
 	
 	LoadEntries();
