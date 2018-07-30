@@ -318,6 +318,38 @@ img {
     border-color: #01549b;
 }
 
+
+ul {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	cursor: pointer;
+}
+
+li:hover {
+    background-color: #111;
+}
+
+li a {
+    color: white;
+    text-decoration: none;
+}
+
 </style>
 
 <script>
@@ -356,19 +388,31 @@ img {
 
 <body onclick="ExpandEntry(null);">
 
-<div id="timeline" class="timeline">
-	
+<ul id="navbar">
+	<li onclick="ShowKey();">Key</li>
+	<li onclick="JumpTo('20');">20th</li>
+	<li onclick="JumpTo('21');">21st</li>
+	<li onclick="JumpTo('22');">22nd</li>
+	<li onclick="JumpTo('23');">23rd</li>
+	<li onclick="JumpTo('24');">24th</li>
+	<li onclick="JumpTo('25');">25th</li>
+	<li onclick="JumpTo('0');">Unkown Date</li>
+	<li style="float: right;"><a href="index.html">Return</a></li>
+</ul>
+
+<div id="timeline" class="timeline" style="top: 50px;">
+
 </div>
-<span>
+<!--span>
 	<button onclick="LoadEntries()" style="margin: 0 auto; display: block; margin-top: 50px; cursor: pointer;" class="btn btn-primary">Load More Entries</button>
-</span>
+</span-->
 
 
 <script>
 	prevDate = null;
 	
 	var entries = 0;
-	var entriesAdd = 250;
+	//var entriesAdd = 250;
 	var day = 0;
 	var currentContainer = null;
 	
@@ -385,7 +429,7 @@ img {
 	
 	function LoadEntries()
 	{
-		for (var i = entries; i < entries + entriesAdd; i++)
+		for (var i = 0; i < images.length; i++)
 		{
 			var temp = document.createElement("div");
 			
@@ -394,7 +438,7 @@ img {
 			if (image.extensions.indexOf('.mp4') != -1)
 				continue;
 				
-			if (prevDate != image.imgDate || prevDate == "UNKNOWN")
+			if (prevDate != image.imgDate && prevDate != "UNKNOWN")
 			{
 				var temp2 = document.createElement("div");
 				day += 1;
@@ -402,8 +446,14 @@ img {
 				prevDate = image.imgDate;
 				if (prevDate == "00-00-00")
 					prevDate = "UNKNOWN";
-					
+				
 				temp2.innerHTML = template.replace('!!', "container-" + day + " " + direction + " " + direction + "-label").replace('content', 'content-label content-' + day).replace('$$', prevDate);
+				
+				if (prevDate == "UNKNOWN")
+					temp2.firstChild.id = "0";
+				else
+					temp2.firstChild.id = prevDate.split('-')[2];
+				
 				timeline.appendChild(temp2.firstChild)
 				
 				if (direction == "left")
@@ -427,7 +477,7 @@ img {
 					direction = "left";
 		}
 		
-		entries += entriesAdd;
+		//entries += entriesAdd;
 	}
 	
 	function ExpandEntry(e)
@@ -444,6 +494,11 @@ img {
 		}
 		
 		currentContainer = e;
+	}
+	
+	function JumpTo(day)
+	{
+		document.getElementsByClassName(day).scrollIntoView();
 	}
 	
 	LoadEntries();
