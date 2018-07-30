@@ -498,7 +498,7 @@ li a {
 	
 	function JumpTo(day)
 	{
-		document.getElementsByClassName(day).scrollIntoView();
+		window.scroll(0, document.getElementsByClassName(day).offsetTop - 150)
 	}
 	
 	LoadEntries();
