@@ -1,0 +1,275 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.js"></script>
+<title>Matts Fourier Transform</title>
+</head>
+
+<body>
+<script>
+
+let time = 0;
+let mCaptured = false;
+
+
+let startButton;
+let started = false;
+
+let points = []; // x, y, distance to next point
+let distance = 0;
+
+let calculatedPoints = [];
+let stepSizeSlider;
+let stepSizeText;
+let stepSize = 100;
+
+let count = 10;
+let maxCount = 1000;
+let circles = []; // speed, time delay, size
+let drawnPoints = [];
+let showCircleCB;
+let showOriginalCB;
+let circlesSlider;
+let speedSlider;
+let circlesText;
+let speedText;
+
+function startFourier()
+{
+	started = true;
+	stepSizeSlider.hide();
+	startButton.hide();
+	stepSizeText.hide();
+	circlesSlider.show();
+	circlesText.show();
+	speedSlider.show();
+	speedText.show();
+	showCircleCB.show();
+	showOriginalCB.show();
+	
+	for (var i = -maxCount; i <= maxCount; i++)
+	{
+		let sumX = 0;
+		let sumY = 0;
+		for (var j = 0; j < calculatedPoints.length; j++)
+		{
+			let t = j / stepSize;
+			sumX += (calculatedPoints[j][0] * cos(-TAU * i * t) - calculatedPoints[j][1] * sin(-TAU * i * t)) * (1 / stepSize);
+			sumY += (calculatedPoints[j][0] * sin(-TAU * i * t) + calculatedPoints[j][1] * cos(-TAU * i * t)) * (1 / stepSize);
+		}
+		append(circles, [i, atan2(sumY, sumX), dist(0, 0, sumX, sumY)]);
+	}
+}
+
+function calcShape()
+{
+	if (points.length <= 1)
+		return;
+		
+	calculatedPoints = [];
+	
+	
+	for (var i = 0; i < stepSize; i++)
+	{
+		let d = distance * (i / stepSize);
+		
+		let index = 0;
+		for (; d > points[index][2]; index++)
+		{
+			d -= points[index][2];
+		}
+		
+		let pc = d / points[index][2];
+		
+		append(calculatedPoints, [lerp(points[index][0], points[(index + 1) % points.length][0], pc),
+								  lerp(points[index][1], points[(index + 1) % points.length][1], pc)]);
+	}
+}
+
+function setup() 
+{
+	let cnv = createCanvas(1200, 800);
+	cnv.mouseOver(function() {mCaptured = true;});
+	cnv.mouseOut(function() {mCaptured = false;});
+	startButton = createButton("Start Fourier Transform");
+	startButton.position(10, 850);
+	startButton.mousePressed(startFourier);
+	
+	stepSizeText = createElement("p", "Precision: ");
+	stepSizeText.position(10, 870);
+	stepSizeSlider = createSlider(1500, 2500, 1500);
+	stepSizeSlider.position(90, 880);
+	
+	
+	showOriginalCB = createCheckbox("Show Original Shape", true);
+	showOriginalCB.position(10, 820);
+	showOriginalCB.hide();
+	
+	showCircleCB = createCheckbox("Show Circles", true);
+	showCircleCB.position(10, 850);
+	showCircleCB.hide();
+	
+	circlesText = createElement("p", "Circles: ");
+	circlesText.position(10, 870);
+	circlesText.hide();
+	circlesSlider = createSlider(0, maxCount, 0);
+	circlesSlider.style('width', '1000px');
+	circlesSlider.position(90, 880);
+	circlesSlider.hide();
+	
+	speedText = createElement("p", "Speed: ");
+	speedText.position(10, 900);
+	speedText.hide();
+	speedSlider = createSlider(1, 100, 5);
+	speedSlider.style('width', '500px');
+	speedSlider.position(90, 910);
+	speedSlider.hide();
+}
+
+function draw() 
+{
+	background(200);
+	
+	translate(width / 2, height / 2);
+	
+	if (!started)
+	{
+		let recalc = false;
+		if (mouseIsPressed && mCaptured)
+		{
+			append(points, [mouseX - width / 2, mouseY - height / 2, points.length > 0 ? dist(mouseX - width / 2, mouseY - height / 2, points[0][0], points[0][1]) : 0]);
+			
+			if (points.length > 1)
+			{
+				distance -= points[points.length - 2][2];
+				points[points.length - 2][2] = dist(mouseX - width / 2, mouseY - height / 2, points[points.length - 2][0], points[points.length - 2][1]);
+				distance += points[points.length - 2][2];
+			}
+			
+			if (points.length > 1 && points[points.length - 2][2] < 2.5)
+			{
+				points.pop();
+				distance -= points[points.length - 1][2];
+				points[points.length - 1][2] = dist(points[points.length - 1][0], points[points.length - 1][1], points[0][0], points[0][1]);
+				distance += points[points.length - 1][2];
+			}
+			else
+			{
+				distance += points[points.length - 1][2];
+				recalc = true;
+			}
+		}
+		
+		if (stepSizeSlider.value() != stepSize)
+		{
+			stepSize = stepSizeSlider.value();
+			recalc = true;
+		}
+		
+		if (recalc)
+			calcShape();
+		
+		noFill();
+		beginShape();
+		stroke(128);
+		for (var i = 0; i < points.length; i++)
+		{
+			vertex(points[i][0], points[i][1]);
+		}
+		endShape(CLOSE);
+		
+		beginShape();
+		stroke(0);
+		for (var i = 0; i < calculatedPoints.length; i++)
+		{
+			vertex(calculatedPoints[i][0], calculatedPoints[i][1]);
+		}
+		endShape(CLOSE);
+	}
+	else
+	{
+		if (time > 1)
+		{
+			drawnPoints = [];
+			time = 0;
+		}
+		
+		count = circlesSlider.value();
+		
+		let x = 0, y = 0;
+		
+		noFill();
+		stroke(0);
+		if (showCircleCB.checked())
+			ellipse(x, y, circles[maxCount][2] * 2);
+		
+		let newX = x + cos(time * TAU * circles[maxCount][0] + circles[maxCount][1]) * circles[maxCount][2];
+		let newY = y + sin(time * TAU * circles[maxCount][0] + circles[maxCount][1]) * circles[maxCount][2];
+		
+		stroke(255, 0, 0);
+		
+		if (showCircleCB.checked())
+			line(x, y, newX, newY);
+		x = newX;
+		y = newY;
+		
+		for (var i = 1; i <= count; i++)
+		{
+			// +i
+			stroke(0);
+			if (showCircleCB.checked())
+				ellipse(x, y, circles[maxCount + i][2] * 2);
+			
+			newX = x + cos(time * TAU * circles[maxCount + i][0] + circles[maxCount + i][1]) * circles[maxCount + i][2];
+			newY = y + sin(time * TAU * circles[maxCount + i][0] + circles[maxCount + i][1]) * circles[maxCount + i][2];
+			
+			stroke(255, 0, 0);
+			if (showCircleCB.checked())
+				line(x, y, newX, newY);
+			x = newX;
+			y = newY;
+			
+			// -i
+			stroke(0);
+			if (showCircleCB.checked())
+				ellipse(x, y, circles[maxCount - i][2] * 2);
+			
+			newX = x + cos(time * TAU * circles[maxCount - i][0] + circles[maxCount - i][1]) * circles[maxCount - i][2];
+			newY = y + sin(time * TAU * circles[maxCount - i][0] + circles[maxCount - i][1]) * circles[maxCount - i][2];
+			
+			stroke(255, 0, 0);
+			if (showCircleCB.checked())
+				line(x, y, newX, newY);
+			x = newX;
+			y = newY;
+		}
+		
+		append(drawnPoints, [x, y]);
+		
+		noFill();
+		if (showOriginalCB.checked())
+		{
+			beginShape();
+			stroke(128);
+			for (var i = 0; i < points.length; i++)
+			{
+				vertex(points[i][0], points[i][1]);
+			}
+			endShape(CLOSE);
+		}
+		
+		beginShape();
+		stroke(0);
+		for (var i = 0; i < drawnPoints.length; i++)
+		{
+			vertex(drawnPoints[i][0], drawnPoints[i][1]);
+		}
+		endShape();
+		
+		time += deltaTime / (1000 * speedSlider.value());
+	}
+}
+
+</script>
+<body>
+</html>
